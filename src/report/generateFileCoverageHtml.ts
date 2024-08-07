@@ -1,0 +1,141 @@
+import { oneLine } from 'common-tags';
+import * as path from 'node:path';
+import { FileCoverageMode } from '../inputs/FileCoverageMode.js';
+import type { JsonFinal } from '../types/JsonFinal.js';
+import type { JsonSummary } from '../types/JsonSummary.js';
+import { generateBlobFileUrl } from './generateFileUrl.js';
+import {
+  getUncoveredLinesFromStatements,
+  type LineRange,
+} from './getUncoveredLinesFromStatements.js';
+
+type FileCoverageInputs = {
+  jsonSummary: JsonSummary;
+  jsonFinal: JsonFinal;
+  fileCoverageMode: FileCoverageMode;
+  pullChanges: string[];
+};
+
+const workspacePath = process.cwd();
+const generateFileCoverageHtml = ({
+  jsonSummary,
+  jsonFinal,
+  fileCoverageMode,
+  pullChanges,
+}: FileCoverageInputs) => {
+  const filePaths = Object.keys(jsonSummary).filter((key) => key !== 'total');
+
+  const formatFileLine = (filePath: string) => {
+    const coverageSummary = jsonSummary[filePath];
+    const lineCoverage = jsonFinal[filePath];
+
+    // LineCoverage might be empty if coverage-final.json was not provided.
+    const uncoveredLines = lineCoverage
+      ? getUncoveredLinesFromStatements(jsonFinal[filePath])
+      : [];
+    const relativeFilePath = path.relative(workspacePath, filePath);
+    const url = generateBlobFileUrl(relativeFilePath);
+
+    return `
+      <tr>
+        <td align="left"><a href="${url}">${relativeFilePath}</a></td>
+        <td align="right">${coverageSummary.statements.pct}%</td>
+        <td align="right">${coverageSummary.branches.pct}%</td>
+        <td align="right">${coverageSummary.functions.pct}%</td>
+        <td align="right">${coverageSummary.lines.pct}%</td>
+        <td align="left">${createRangeURLs(uncoveredLines, url)}</td>
+      </tr>`;
+  };
+
+  let reportData = '';
+
+  const [changedFiles, unchangedFiles] = splitFilesByChangeStatus(
+    filePaths,
+    pullChanges
+  );
+
+  if (
+    fileCoverageMode === FileCoverageMode.Changes &&
+    changedFiles.length === 0
+  ) {
+    return 'No changed files found.';
+  }
+
+  if (changedFiles.length > 0) {
+    reportData += `
+			${formatGroupLine('Changed Files')} 
+			${changedFiles.map(formatFileLine).join('')}
+		`;
+  }
+
+  if (fileCoverageMode === FileCoverageMode.All && unchangedFiles.length > 0) {
+    reportData += `
+			${formatGroupLine('Unchanged Files')}
+			${unchangedFiles.map(formatFileLine).join('')}
+		`;
+  }
+
+  return oneLine`
+    <table>
+      <thead>
+        <tr>
+         <th align="left">File</th>
+         <th align="right">Stmts</th>
+         <th align="right">% Branch</th>
+         <th align="right">% Funcs</th>
+         <th align="right">% Lines</th>
+         <th align="left">Uncovered Lines</th>
+        </tr>
+      </thead>
+      <tbody>
+      ${reportData}
+      </tbody>
+    </table>
+  `;
+};
+
+function formatGroupLine(caption: string): string {
+  return `
+		<tr>
+			<td align="left" colspan="6"><b>${caption}</b></td>
+		</tr>
+	`;
+}
+
+function createRangeURLs(uncoveredLines: LineRange[], url: string): string {
+  return uncoveredLines
+    .map((range) => {
+      let linkText = `${range.start}`;
+      let urlHash = `#L${range.start}`;
+
+      if (range.start !== range.end) {
+        linkText += `-${range.end}`;
+        urlHash += `-L${range.end}`;
+      }
+
+      return `<a href="${url}${urlHash}" class="text-red">${linkText}</a>`;
+    })
+    .join(', ');
+}
+
+function splitFilesByChangeStatus(
+  filePaths: string[],
+  pullChanges: string[]
+): [string[], string[]] {
+  return filePaths.reduce(
+    ([changedFiles, unchangedFiles], filePath) => {
+      // Pull Changes has filePaths relative to the git repository, whereas the jsonSummary has filePaths relative to the workspace.
+      // So we have to convert the filePaths to be relative to the workspace.
+      const comparePath = path.relative(workspacePath, filePath);
+      if (pullChanges.includes(comparePath)) {
+        changedFiles.push(filePath);
+      } else {
+        unchangedFiles.push(filePath);
+      }
+      return [changedFiles, unchangedFiles];
+    },
+    [[], []] as [string[], string[]]
+  );
+}
+
+export { generateFileCoverageHtml };

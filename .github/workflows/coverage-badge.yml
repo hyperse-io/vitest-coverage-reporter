@@ -1,0 +1,44 @@
+name: (main) coverage badge
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  coverage-badge:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        node:
+          - 18.14.2
+        pnpm:
+          - 7
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 📥 Install Dependencies
+        run: yarn --frozen-lockfile
+
+      - name: run coverage
+        run: yarn test:coverage
+
+      - name: generate badges
+        run: yarn generate-badges
+
+      - name: push coverage artifacts to another branch
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./coverage
+          publish_branch: coverage
+          allow_empty_commit: true
