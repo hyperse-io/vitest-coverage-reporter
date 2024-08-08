@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.5
+
+### Patch Changes
+
+- [`a38eb44`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/a38eb446f60a1f889dca61733a07509dd578d246) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bunlde `actions` dependecies form `github actions`
+
 ## 1.0.4
 
 ### Patch Changes
