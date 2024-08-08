@@ -126,3 +126,4 @@ dist
 .pnp.*
 .DS_Store
 .netrc
+tmp

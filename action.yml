@@ -1,0 +1,44 @@
+name: 'Vitest Coverage Reporter'
+description: 'Provide a Vitest Test Coverage Report as Step-Summary and comment in Pull Requests'
+author: 'Hyperse.net'
+inputs:
+  github-token:
+      required: false
+      description: 'A github access token with permissions to write to issues. Uses secrets.GITHUB_TOKEN by default.'
+      default: ${{ github.token }}
+  vite-config-path:
+      required: false
+      description: 'The path to the vite config file. By default, looks for paths by the pattern "vite[st].config.{t|mt|ct|j|mj|cj}s".'
+  json-summary-path:
+      required: false
+      description: 'The path to the json summary file. Uses "coverage/coverage-summary.json" by default.'
+      default: coverage/coverage-summary.json
+  json-summary-compare-path:
+      required: false
+      description: 'The path to the json summary file of the previous run to get trend indicators.'
+  json-final-path:
+      required: false
+      description: 'The path to the json final file. Uses "coverage/coverage-final.json" by default.'
+      default: coverage/coverage-final.json
+  file-coverage-mode:
+      required: false
+      description: 'How to show summary for files coverage. Uses "changes" by default.'
+      default: changes
+  working-directory:
+      required: false
+      description: 'Custom working directory'
+      default: ./
+  name:
+      required: false
+      description: 'The name of the coverage report. Can be used to execute this action multiple times. '
+      default: ''
+  pr-number:
+      required: false
+      description: 'An optional, user-defined pull request number.'
+      default: ''
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'check-circle'
+  color: 'green'
