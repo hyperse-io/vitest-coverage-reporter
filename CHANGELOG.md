@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.4
+
+### Patch Changes
+
+- [`05bcdca`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/05bcdcaf0ba9ddc3998e043b4ae9336c1167418f) Thanks [@tianyingchun](https://github.com/tianyingchun)! - remove `dist` from gitignore
+
 ## 1.0.3
 
 ### Patch Changes
