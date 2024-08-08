@@ -123,3 +123,100 @@ jobs:
 ![Coverage: Functions](https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<PUBLISH_BRANCH_NAME>/badges/functions.svg)
 ![Coverage: Lines](https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<PUBLISH_BRANCH_NAME>/badges/lines.svg)
 ```
+
+
+## Case Example 2 (github action)
+```yml
+name: coverage markdown
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-coverage:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        node:
+          - 18.14.2
+        pnpm:
+          - 7
+    runs-on: ${{ matrix.os }}
+
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 📥 Install Dependencies
+        run: yarn --frozen-lockfile
+
+      - name: 'Run test coverage'
+        run: yarn test:coverage
+
+      - name: 'Report Coverage'
+        # Set if: always() to also generate the report if tests are failing
+        # Only works if you set `reportOnFailure: true` in your vite config as specified above
+        uses:  hyperse-io/vitest-coverage-reporter@v1
+```
+
+### Required Permissions
+
+This action requires the `pull-request: write` permission to add a comment to your pull request. If you're using the default `GITHUB_TOKEN`, ensure that you include both `pull-request: write` and `contents: read` permissions in the job. The `contents: read` permission is necessary for the `actions/checkout` action to checkout the repository. This is particularly important for new repositories created after GitHub's [announcement](https://github.blog/changelog/2023-02-02-github-actions-updating-the-default-github_token-permissions-to-read-only/) to change the default permissions to `read-only` for all new `GITHUB_TOKEN`s.
+
+
+### Action Options
+
+| Option                      | Description                                                                                                                                                                | Default                                                                                                                                                                                                                                                            |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `working-directory`         | The main path to search for coverage- and configuration files (adjusting this is especially useful in monorepos).                                                          | `./`                                                                                                                                                                                                                                                               |
+| `json-summary-path`         | The path to the json summary file.                                                                                                                                         | `${working-directory}/coverage/coverage-summary.json`                                                                                                                                                                                                              |
+| `json-final-path`           | The path to the json final file.                                                                                                                                           | `${working-directory}/coverage/coverage-final.json`                                                                                                                                                                                                                |
+| `vite-config-path`          | The path to the vite config file. Will check the same paths as vite and vitest                                                                                             | Checks pattern `${working-directory}/vite[st].{config                                                                                                                                                                                                              | workspace}.{t\|mt\|ct\|j\|mj\|cj}s` |
+| `github-token`              | A GitHub access token with permissions to write to issues (defaults to `secrets.GITHUB_TOKEN`).                                                                            | `${{ github.token }}`                                                                                                                                                                                                                                              |
+| `file-coverage-mode`        | Defines how file-based coverage is reported. Possible values are `all`, `changes` or `none`.                                                                               | `changes`                                                                                                                                                                                                                                                          |
+| `name`                      | Give the report a custom name. This is useful if you want multiple reports for different test suites within the same PR. Needs to be unique.                               | ''                                                                                                                                                                                                                                                                 |
+| `json-summary-compare-path` | The path to the json summary file to compare against. If given, will display a trend indicator and the difference in the summary. Respects the `working-directory` option. | undefined                                                                                                                                                                                                                                                          |
+| `pr-number`                 | The number of the PR to post a comment to (if any)                                                                                                                         | If in the context of a PR, the number of that PR.<br/> If in the context of a triggered workflow, the PR of the triggering workflow.                                                                    <br/>If no PR context is found, it defaults to `undefined` |
+
+#### File Coverage Mode
+
+- `changes` - show Files coverage only for project files changed in that pull request (works only with `pull_request`, `pull_request_review`, `pull_request_review_comment` actions)
+- `all` - show it grouped by changed and not changed files in that pull request (works only with `pull_request`, `pull_request_review`, `pull_request_review_comment` actions)
+- `none` - do not show any File coverage details (only total Summary)
+
+
+#### Name
+
+If your project includes multiple test suites and you want to consolidate their coverage reports into a single pull request comment, you must assign a unique `name` to each action step that parses a summary report. For example:
+
+```yml
+## ...
+- name: 'Report Frontend Coverage'
+  if: always() # Also generate the report if tests are failing
+  uses:  davelosert/vitest-coverage-report-action@v2
+  with:
+    name: 'Frontend'
+    json-summary-path: './coverage/coverage-summary-frontend.json'
+    json-final-path: './coverage/coverage-final-frontend.json
+- name: 'Report Backend Coverage'
+  if: always() # Also generate the report if tests are failing
+  uses:  davelosert/vitest-coverage-report-action@v2
+  with:
+    name: 'Backend'
+    json-summary-path: './coverage/coverage-summary-backend.json'
+    json-final-path: './coverage/coverage-final-backend.json'
+```
