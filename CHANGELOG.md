@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.7
+
+### Patch Changes
+
+- [`b13087c`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/b13087cb5d3d95434033617dccbc5cb9af651f3e) Thanks [@tianyingchun](https://github.com/tianyingchun)! - fix wrong .cjs import
+
 ## 1.0.6
 
 ### Patch Changes
