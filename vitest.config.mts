@@ -6,9 +6,6 @@ export default defineConfig({
     globals: true,
     testTimeout: 100000,
     exclude: [...configDefaults.exclude],
-    alias: {
-      '@/': new URL('./src/', import.meta.url).pathname,
-    },
     coverage: {
       provider: 'istanbul', // or 'v8'
       // you can include other reporters, but 'json-summary' is required, json is recommended

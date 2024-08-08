@@ -7,10 +7,13 @@
     "incremental": false,
     "types": ["vitest/globals"],
     "paths": {},
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "Node",
     "lib": ["dom", "dom.iterable", "esnext"],
     "isolatedModules": true,
     "jsx": "preserve"
   },
   "exclude": ["**/node_modules", "**/.*/", "dist", "build"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "vitest.config.mts"]
 }

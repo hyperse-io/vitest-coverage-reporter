@@ -67,7 +67,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
   // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
@@ -22997,12 +22997,12 @@ var require_github = __commonJS({
 });
 
 // src/index.ts
-var core8 = __toESM(require_core(), 1);
-var github4 = __toESM(require_github(), 1);
+var core8 = __toESM(require_core());
+var github4 = __toESM(require_github());
 init_dist_src2();
 
 // src/inputs/getCoverageModeFrom.ts
-var core = __toESM(require_core(), 1);
+var core = __toESM(require_core());
 var FileCoverageMode = /* @__PURE__ */ ((FileCoverageMode2) => {
   FileCoverageMode2["All"] = "all";
   FileCoverageMode2["Changes"] = "changes";
@@ -23020,8 +23020,8 @@ function getCoverageModeFrom(input) {
 }
 
 // src/inputs/getPullChanges.ts
-var core2 = __toESM(require_core(), 1);
-var github = __toESM(require_github(), 1);
+var core2 = __toESM(require_core());
+var github = __toESM(require_github());
 init_dist_src2();
 async function getPullChanges(fileCoverageMode) {
   var _a2;
@@ -23401,7 +23401,7 @@ var stripIndent_default = stripIndent;
 new TemplateTag_default(stripIndentTransformer_default("all"), trimResultTransformer_default);
 
 // src/inputs/parseVitestJsonReports.ts
-var core3 = __toESM(require_core(), 1);
+var core3 = __toESM(require_core());
 var parseVitestCoverageReport = async (jsonPath) => {
   const resolvedJsonSummaryPath = path4__namespace.default.resolve(process.cwd(), jsonPath);
   const jsonSummaryRaw = await promises.readFile(resolvedJsonSummaryPath);
@@ -23439,10 +23439,10 @@ var parseVitestJsonFinal = async (jsonFinalPath) => {
 };
 
 // src/inputs/readOptions.ts
-var core6 = __toESM(require_core(), 1);
+var core6 = __toESM(require_core());
 
 // src/inputs/getViteConfigPath.ts
-var core4 = __toESM(require_core(), 1);
+var core4 = __toESM(require_core());
 var testFilePath = async (workingDirectory, filePath) => {
   const resolvedPath = path4__namespace.default.resolve(workingDirectory, filePath);
   await fs.promises.access(resolvedPath, fs.constants.R_OK);
@@ -23489,7 +23489,7 @@ var getViteConfigPath = async (workingDirectory, input) => {
 };
 
 // src/inputs/parseCoverageThresholds.ts
-var core5 = __toESM(require_core(), 1);
+var core5 = __toESM(require_core());
 var regex100 = /100"?\s*:\s*true/;
 var regexStatements = /statements\s*:\s*(\d+)/;
 var regexLines = /lines:\s*(\d+)/;
@@ -23578,7 +23578,7 @@ async function readOptions() {
 }
 
 // src/report/generateFileUrl.ts
-var github2 = __toESM(require_github(), 1);
+var github2 = __toESM(require_github());
 var generateBlobFileUrl = (relativeFilePath) => {
   const sha = github2.context.payload.pull_request ? github2.context.payload.pull_request.head.sha : github2.context.sha;
   return [
@@ -23799,8 +23799,8 @@ function getCompareString(percentDiff) {
 }
 
 // src/utils/writeSummaryToPR.ts
-var core7 = __toESM(require_core(), 1);
-var github3 = __toESM(require_github(), 1);
+var core7 = __toESM(require_core());
+var github3 = __toESM(require_github());
 var gitHubToken = core7.getInput("github-token").trim();
 var octokit = github3.getOctokit(gitHubToken);
 var COMMENT_MARKER = (markerPostfix = "root") => `<!-- vitest-coverage-report-marker-${markerPostfix} -->`;
@@ -24012,5 +24012,5 @@ undici/lib/fetch/body.js:
 undici/lib/websocket/frame.js:
   (*! ws. MIT License. Einar Otto Stangvik <einaros@gmail.com> *)
 */
-//# sourceMappingURL=index.cjs.map
-//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.js.map
