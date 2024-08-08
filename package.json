@@ -16,8 +16,10 @@
     "url": "git@github.com:hyperse-io/vitest-coverage-reporter.git"
   },
   "type": "module",
+  "main": "./dist/index.cjs",
   "exports": {
     ".": {
+      "require": "./dist/index.cjs",
       "import": "./index.js",
       "types": "./dist/index.d.ts"
     },

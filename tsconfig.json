@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
+    "incremental": false,
     "types": ["vitest/globals"],
     "paths": {},
     "lib": ["dom", "dom.iterable", "esnext"],

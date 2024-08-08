@@ -2,26 +2,26 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig((options) => [
   {
-    dts: true,
+    dts: false,
     entry: ['src/index.ts'],
     splitting: false,
     noExternal: ['@actions/core', '@actions/github', 'common-tags'],
     sourcemap: !options.watch,
     clean: true,
-    minify: !options.watch,
+    minify: false, //!options.watch,
     treeshake: true,
     tsconfig: './tsconfig.build.json',
-    format: ['esm'],
+    format: ['cjs'],
   },
   {
-    dts: true,
+    dts: false,
     entry: ['src/main.ts'],
     splitting: false,
     sourcemap: !options.watch,
     clean: true,
     minify: !options.watch,
     treeshake: true,
-    tsconfig: './tsconfig.build.json',
+    // tsconfig: './tsconfig.build.json',
     format: ['esm'],
   },
 ]);

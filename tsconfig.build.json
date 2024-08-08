@@ -3,8 +3,10 @@
   "compilerOptions": {
     "rootDir": "./src",
     "incremental": false,
-    "moduleResolution": "nodenext",
-    "paths": {}
+    "paths": {},
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "Node"
   },
   "exclude": ["**/*.stories.tsx", "**/*.stories.mdx", ".storybook/**", "dist"]
 }
