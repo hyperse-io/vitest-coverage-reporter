@@ -3,7 +3,7 @@ import * as core from '@actions/core';
 import {
   FileCoverageMode,
   getCoverageModeFrom,
-} from '../../src/inputs/FileCoverageMode.js';
+} from '../../src/inputs/getCoverageModeFrom.js';
 
 vi.mock('@actions/core', async (importOriginal) => ({
   ...importOriginal,

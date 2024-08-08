@@ -1,15 +1,15 @@
 {
   "name": "@hyperse/vitest-coverage-reporter",
   "version": "1.0.0",
-  "description": "Using gitHub action for creating markdown coverage report, badges from Istanbul html report",
+  "description": "Using gitHub action for creating markdown coverage report, badges from Istanbul json report",
   "keywords": [
     "hyperse",
-    "actions",
     "reporter",
     "markdown",
     "coverage",
     "badges",
-    "vitest"
+    "vitest",
+    "github actions"
   ],
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   },
   "types": "./dist/index.d.ts",
   "bin": {
-    "hyperse-vitest-coverage": "./bin/hyperse-vitest-coverage.mjs"
+    "generate-badges": "./bin/generate-badges.mjs"
   },
   "files": [
     "./bin/",
@@ -37,7 +37,6 @@
     "changeset": "changeset",
     "cz": "cz",
     "lint": "eslint .",
-    "lint-fix": "yarn lint --fix",
     "lint-staged-files": "lint-staged --allow-empty",
     "prepare": "husky",
     "release": "yarn build && changeset publish",
@@ -64,7 +63,6 @@
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
     "@hyperse/eslint-config-hyperse": "^1.1.0",
-    "@hyperse/exec-program": "^1.0.10",
     "@semantic-release/exec": "6.0.3",
     "@types/common-tags": "1.8.4",
     "@types/minimist": "^1.2.5",

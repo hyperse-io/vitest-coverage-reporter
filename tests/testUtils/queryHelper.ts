@@ -1,6 +1,7 @@
 // biome-ignore lint/correctness/noEmptyCharacterClassInRegex: <explanation>
 const tableRowRegexp = /<tr>[^]+?<\/tr>/g;
-function getTableLine(line: number, html: string) {
+
+export function getTableLine(line: number, html: string) {
   const table = html.match(/<table>.*<\/table>/);
   if (!table) {
     throw new Error('No table found');
@@ -11,5 +12,3 @@ function getTableLine(line: number, html: string) {
   }
   return tableLine[line];
 }
-
-export { getTableLine };

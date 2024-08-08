@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { icons } from '../../src/icons.js';
 import { generateSummaryTableHtml } from '../../src/report/generateSummaryTableHtml.js';
+import type { Thresholds } from '../../src/types/Threshold.js';
 import {
   createMockCoverageReport,
   createMockReportNumbers,
-} from '../../src/types/JsonSummaryMockFactory.js';
-import type { Thresholds } from '../../src/types/Threshold.js';
-import { getTableLine } from '../queryHelper.js';
+} from '../testUtils/JsonSummaryMockFactory.js';
+import { getTableLine } from '../testUtils/queryHelper.js';
 
 describe('generateSummaryTabelHtml()', () => {
   it('generates the headline', () => {

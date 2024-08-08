@@ -1,18 +1,18 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { RequestError } from '@octokit/request-error';
-import { FileCoverageMode } from './inputs/FileCoverageMode.js';
+import { FileCoverageMode } from './inputs/getCoverageModeFrom.js';
 import { getPullChanges } from './inputs/getPullChanges.js';
-import { readOptions } from './inputs/options.js';
 import {
   parseVitestJsonFinal,
   parseVitestJsonSummary,
-} from './inputs/parseJsonReports.js';
+} from './inputs/parseVitestJsonReports.js';
+import { readOptions } from './inputs/readOptions.js';
 import { generateFileCoverageHtml } from './report/generateFileCoverageHtml.js';
 import { generateHeadline } from './report/generateHeadline.js';
 import { generateSummaryTableHtml } from './report/generateSummaryTableHtml.js';
 import type { JsonSummary } from './types/JsonSummary.js';
-import { writeSummaryToPR } from './writeSummaryToPR.js';
+import { writeSummaryToPR } from './utils/writeSummaryToPR.js';
 
 const run = async () => {
   const {
@@ -38,6 +38,7 @@ const run = async () => {
     thresholds,
     jsonSummaryCompare?.total
   );
+
   const summary = core.summary
     .addHeading(generateHeadline({ workingDirectory, name }), 2)
     .addRaw(tableData);

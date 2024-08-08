@@ -30,7 +30,10 @@ const defaultPaths = [
   'vitest.workspace.cjs',
 ];
 
-const getViteConfigPath = async (workingDirectory: string, input: string) => {
+export const getViteConfigPath = async (
+  workingDirectory: string,
+  input: string
+) => {
   try {
     if (input === '') {
       return await Promise.any(
@@ -53,5 +56,3 @@ const getViteConfigPath = async (workingDirectory: string, input: string) => {
     return null;
   }
 };
-
-export { getViteConfigPath };

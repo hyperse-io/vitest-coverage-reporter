@@ -1,6 +1,6 @@
 import { oneLine } from 'common-tags';
 import * as path from 'node:path';
-import { FileCoverageMode } from '../inputs/FileCoverageMode.js';
+import { FileCoverageMode } from '../inputs/getCoverageModeFrom.js';
 import type { JsonFinal } from '../types/JsonFinal.js';
 import type { JsonSummary } from '../types/JsonSummary.js';
 import { generateBlobFileUrl } from './generateFileUrl.js';
@@ -17,7 +17,8 @@ type FileCoverageInputs = {
 };
 
 const workspacePath = process.cwd();
-const generateFileCoverageHtml = ({
+
+export const generateFileCoverageHtml = ({
   jsonSummary,
   jsonFinal,
   fileCoverageMode,
@@ -137,5 +138,3 @@ function splitFilesByChangeStatus(
     [[], []] as [string[], string[]]
   );
 }
-
-export { generateFileCoverageHtml };

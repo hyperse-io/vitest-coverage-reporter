@@ -1,4 +1,4 @@
-type StatementMap = {
+export type StatementMap = {
   [statementNumber: string]: {
     start: {
       line: number;
@@ -11,28 +11,20 @@ type StatementMap = {
   };
 };
 
-type StatementCoverage = {
+export type StatementCoverage = {
   [statementNumber: string]: number;
 };
 
-type StatementCoverageReport = {
+export type StatementCoverageReport = {
   statementMap: StatementMap;
   s: StatementCoverage;
 };
 
-type FileCoverageReport = StatementCoverageReport & {
+export type FileCoverageReport = StatementCoverageReport & {
   path: string;
   all: boolean;
 };
 
-type JsonFinal = {
+export type JsonFinal = {
   [path: string]: FileCoverageReport;
-};
-
-export type {
-  FileCoverageReport,
-  JsonFinal,
-  StatementCoverage,
-  StatementCoverageReport,
-  StatementMap,
 };

@@ -1,4 +1,8 @@
-import { CoverageReport, JsonSummary, ReportNumbers } from './JsonSummary.js';
+import {
+  CoverageReport,
+  JsonSummary,
+  ReportNumbers,
+} from '../../src/types/JsonSummary.js';
 
 const defaultReportNumbers: ReportNumbers = {
   total: 100,
@@ -7,7 +11,7 @@ const defaultReportNumbers: ReportNumbers = {
   skipped: 0,
 };
 
-const createMockReportNumbers = (
+export const createMockReportNumbers = (
   overwrites: Partial<ReportNumbers> = {}
 ): ReportNumbers => ({
   ...defaultReportNumbers,
@@ -21,7 +25,7 @@ const defaultReport: CoverageReport = {
   branches: createMockReportNumbers(),
 };
 
-const createMockCoverageReport = (
+export const createMockCoverageReport = (
   overwrites: Partial<CoverageReport> = {}
 ): CoverageReport =>
   ({
@@ -54,16 +58,10 @@ const defaultJsonSummary: JsonSummary = {
   }),
 };
 
-const createMockJsonSummary = (
+export const createMockJsonSummary = (
   overwrites: Partial<JsonSummary> = {}
 ): JsonSummary =>
   ({
     ...defaultJsonSummary,
     ...overwrites,
   }) as JsonSummary;
-
-export {
-  createMockCoverageReport,
-  createMockJsonSummary,
-  createMockReportNumbers,
-};

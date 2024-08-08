@@ -3,10 +3,11 @@ import type {
   StatementCoverage,
   StatementCoverageReport,
   StatementMap,
-} from './JsonFinal.js';
+} from '../../src/types/JsonFinal.js';
 
 type LineConfig = { line: number; covered: boolean };
-const createJsonFinalEntry = (
+
+export const createJsonFinalEntry = (
   fileName: string,
   lineConfigs: LineConfig[]
 ): JsonFinal => {
@@ -43,10 +44,10 @@ const defaultJsonFinal: JsonFinal = {
   ...createJsonFinalEntry('src/exampleFile.ts', [{ line: 1, covered: false }]),
 };
 
-const createTestJsonFinal = (overwrites: Partial<JsonFinal> = {}): JsonFinal =>
+export const createTestJsonFinal = (
+  overwrites: Partial<JsonFinal> = {}
+): JsonFinal =>
   ({
     ...defaultJsonFinal,
     ...overwrites,
   }) as JsonFinal;
-
-export { createJsonFinalEntry, createTestJsonFinal };

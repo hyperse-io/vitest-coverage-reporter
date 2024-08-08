@@ -1,11 +1,11 @@
 import type { StatementCoverageReport } from '../types/JsonFinal.js';
 
-type LineRange = {
+export type LineRange = {
   start: number;
   end: number;
 };
 
-const getUncoveredLinesFromStatements = ({
+export const getUncoveredLinesFromStatements = ({
   s,
   statementMap,
 }: StatementCoverageReport): LineRange[] => {
@@ -30,7 +30,3 @@ const getUncoveredLinesFromStatements = ({
 
   return uncoveredLineRanges;
 };
-
-export { getUncoveredLinesFromStatements };
-
-export type { LineRange };

@@ -1,31 +1,31 @@
-import { spawn } from 'child_process';
 import minimist from 'minimist';
+import { resolve } from 'path';
+import { parseVitestJsonSummary } from './inputs/parseVitestJsonReports.js';
+import { readOptions } from './inputs/readOptions.js';
+import { generateBadges } from './report/generateBadges.js';
 
 type Argv = {
-  e: string;
-  env: string;
   p: string;
   path: string;
 };
 
-export const main = (args: string[]) => {
+export const main = async (args: string[]) => {
   const argv = minimist<Argv>(args, {
     '--': true,
     alias: {
-      e: 'env',
       p: 'path',
     },
     default: {
-      e: 'APP_ENV',
-      p: '',
+      p: 'coverage/badges',
     },
   });
 
-  if (argv['--'] && argv['--'].length) {
-    spawn(argv['--'][0], argv['--'].slice(1), {
-      stdio: 'inherit',
-    }).on('exit', function (exitCode) {
-      process.exit(exitCode);
-    });
-  }
+  const badgesSavedTo = resolve(process.cwd(), argv.path);
+  const { jsonSummaryPath } = await readOptions();
+  const jsonSummary = await parseVitestJsonSummary(jsonSummaryPath);
+
+  return generateBadges({
+    badgesSavedTo,
+    totalCoverageReport: jsonSummary.total,
+  });
 };

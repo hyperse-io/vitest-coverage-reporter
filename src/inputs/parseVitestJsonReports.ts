@@ -13,7 +13,7 @@ const parseVitestCoverageReport = async <type extends JsonSummary | JsonFinal>(
   return JSON.parse(jsonSummaryRaw.toString()) as type;
 };
 
-const parseVitestJsonSummary = async (
+export const parseVitestJsonSummary = async (
   jsonSummaryPath: string
 ): Promise<JsonSummary> => {
   try {
@@ -33,7 +33,7 @@ const parseVitestJsonSummary = async (
   }
 };
 
-const parseVitestJsonFinal = async (
+export const parseVitestJsonFinal = async (
   jsonFinalPath: string
 ): Promise<JsonFinal> => {
   try {
@@ -50,5 +50,3 @@ const parseVitestJsonFinal = async (
     return {};
   }
 };
-
-export { parseVitestJsonFinal, parseVitestJsonSummary };

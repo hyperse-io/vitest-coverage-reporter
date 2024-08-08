@@ -1,20 +1,18 @@
-type ReportNumbers = {
+export type ReportNumbers = {
   total: number;
   covered: number;
   skipped: number;
   pct: number;
 };
 
-type CoverageReport = {
+export type CoverageReport = {
   lines: ReportNumbers;
   statements: ReportNumbers;
   functions: ReportNumbers;
   branches: ReportNumbers;
 };
 
-type JsonSummary = {
+export type JsonSummary = {
   total: CoverageReport;
   [filePath: string]: CoverageReport;
 };
-
-export type { CoverageReport, JsonSummary, ReportNumbers };

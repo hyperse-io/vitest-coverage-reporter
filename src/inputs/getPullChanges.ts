@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { RequestError } from '@octokit/request-error';
-import { FileCoverageMode } from './FileCoverageMode.js';
+import { FileCoverageMode } from './getCoverageModeFrom.js';
 
 type Octokit = ReturnType<typeof github.getOctokit>;
 

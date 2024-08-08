@@ -1,12 +1,12 @@
 import * as core from '@actions/core';
 
-enum FileCoverageMode {
+export enum FileCoverageMode {
   All = 'all',
   Changes = 'changes',
   None = 'none',
 }
 
-function getCoverageModeFrom(input: string): FileCoverageMode {
+export function getCoverageModeFrom(input: string): FileCoverageMode {
   const allEnums = Object.values(FileCoverageMode) as string[];
   const index = allEnums.indexOf(input);
   if (index === -1) {
@@ -15,5 +15,3 @@ function getCoverageModeFrom(input: string): FileCoverageMode {
   }
   return input as FileCoverageMode;
 }
-
-export { FileCoverageMode, getCoverageModeFrom };

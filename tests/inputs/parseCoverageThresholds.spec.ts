@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { parseCoverageThresholds } from '../../src/inputs/parseCoverageThresholds.js';
-import { getDirname } from '../../src/utils/get-dir-name.js';
+import { getDirname } from '../../src/utils/getDirname.js';
 
 // Avoid logging warnings to the console during tests by stubbing the warning functions.
 vi.mock('@actions/core', async (importOriginal) => ({

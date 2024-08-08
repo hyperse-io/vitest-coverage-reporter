@@ -1,1 +1,2 @@
-export * from './get-dir-name.js';
+export * from './getDirname.js';
+export * from './writeSummaryToPR.js';

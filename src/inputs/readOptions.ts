@@ -1,10 +1,10 @@
 import * as path from 'node:path';
 import * as core from '@actions/core';
-import { getCoverageModeFrom } from './FileCoverageMode.js';
+import { getCoverageModeFrom } from './getCoverageModeFrom.js';
 import { getViteConfigPath } from './getViteConfigPath.js';
 import { parseCoverageThresholds } from './parseCoverageThresholds.js';
 
-async function readOptions() {
+export async function readOptions() {
   // Working directory can be used to modify all default/provided paths (for monorepos, etc)
   const workingDirectory = core.getInput('working-directory');
 
@@ -61,5 +61,3 @@ async function readOptions() {
     processedPrNumber,
   };
 }
-
-export { readOptions };

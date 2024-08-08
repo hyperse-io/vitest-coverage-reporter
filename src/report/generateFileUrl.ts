@@ -1,6 +1,6 @@
 import * as github from '@actions/github';
 
-const generateBlobFileUrl = (relativeFilePath: string) => {
+export const generateBlobFileUrl = (relativeFilePath: string) => {
   const sha = github.context.payload.pull_request
     ? github.context.payload.pull_request.head.sha
     : github.context.sha;
@@ -14,5 +14,3 @@ const generateBlobFileUrl = (relativeFilePath: string) => {
     relativeFilePath,
   ].join('/');
 };
-
-export { generateBlobFileUrl };

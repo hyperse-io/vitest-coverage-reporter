@@ -7,7 +7,8 @@ const COMMENT_MARKER = (markerPostfix = 'root') =>
   `<!-- vitest-coverage-report-marker-${markerPostfix} -->`;
 
 type Octokit = ReturnType<typeof github.getOctokit>;
-const writeSummaryToPR = async ({
+
+export const writeSummaryToPR = async ({
   summary,
   markerPostfix,
   userDefinedPrNumber,
@@ -167,5 +168,3 @@ async function findPullRequest(octokit: Octokit, headSha: string) {
   core.endGroup();
   return undefined;
 }
-
-export { writeSummaryToPR };

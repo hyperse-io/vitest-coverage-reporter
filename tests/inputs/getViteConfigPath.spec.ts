@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import * as core from '@actions/core';
 import { getViteConfigPath } from '../../src/inputs/getViteConfigPath.js';
-import { getDirname } from '../../src/utils/get-dir-name.js';
+import { getDirname } from '../../src/utils/getDirname.js';
 
 describe('getViteConfigPath', () => {
   const mockWorkingDirectory = getDirname(import.meta.url, '../mockConfig');

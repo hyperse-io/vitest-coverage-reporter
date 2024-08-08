@@ -1,16 +1,16 @@
 import * as path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { FileCoverageMode } from '../../src/inputs/FileCoverageMode.js';
+import { FileCoverageMode } from '../../src/inputs/getCoverageModeFrom.js';
 import { generateFileCoverageHtml } from '../../src/report/generateFileCoverageHtml.js';
 import type { JsonFinal } from '../../src/types/JsonFinal.js';
-import { createJsonFinalEntry } from '../../src/types/JsonFinalMockFactory.js';
 import type { JsonSummary } from '../../src/types/JsonSummary.js';
+import { createJsonFinalEntry } from '../testUtils/JsonFinalMockFactory.js';
 import {
   createMockCoverageReport,
   createMockJsonSummary,
   createMockReportNumbers,
-} from '../../src/types/JsonSummaryMockFactory.js';
-import { getTableLine } from '../queryHelper.js';
+} from '../testUtils/JsonSummaryMockFactory.js';
+import { getTableLine } from '../testUtils/queryHelper.js';
 
 const workspacePath = process.cwd();
 describe('generateFileCoverageHtml()', () => {

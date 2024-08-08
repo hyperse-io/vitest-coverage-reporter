@@ -3,7 +3,7 @@ import { icons } from '../icons.js';
 import type { CoverageReport, ReportNumbers } from '../types/JsonSummary.js';
 import type { Thresholds } from '../types/Threshold.js';
 
-function generateSummaryTableHtml(
+export function generateSummaryTableHtml(
   jsonReport: CoverageReport,
   thresholds: Thresholds = {},
   jsonCompareReport: CoverageReport | undefined = undefined
@@ -81,5 +81,3 @@ function getCompareString(percentDiff: number): string {
   // The - char is already included in a negative number
   return `${icons.decrease} <em>${percentDiff.toFixed(2)}%</em>`;
 }
-
-export { generateSummaryTableHtml };

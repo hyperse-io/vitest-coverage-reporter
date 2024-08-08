@@ -1,16 +1,17 @@
 import { mkdir, writeFile } from 'node:fs/promises';
-import path from 'node:path';
-import { parseVitestJsonSummary } from '../src/inputs/parseJsonReports.js';
-import { generateSummaryTableHtml } from '../src/report/generateSummaryTableHtml.js';
+import { join } from 'node:path';
+import { parseVitestJsonSummary } from '../../src/inputs/parseVitestJsonReports.js';
+import { generateSummaryTableHtml } from '../../src/report/generateSummaryTableHtml.js';
+import { getDirname } from '../../src/utils/getDirname.js';
 
-const basePath = path.join(__dirname, 'mockReports', 'coverage');
-const coveragePath = path.join(basePath, 'coverage-summary.json');
-const coverageComparePath = path.join(
+const basePath = getDirname(import.meta.url, '../mockReports', 'coverage');
+const coveragePath = getDirname(basePath, 'coverage-summary.json');
+const coverageComparePath = getDirname(
   basePath,
   'coverage-summary-compare.json'
 );
 
-const targetPath = path.join(__dirname, '..', 'tmp');
+const targetPath = getDirname(import.meta.url, '..', 'tmp');
 
 async function generateMarkdown() {
   // Parse the coverage reports
@@ -32,7 +33,7 @@ async function generateMarkdown() {
 
   // Write the HTML into a markdown file
   await mkdir(targetPath, { recursive: true });
-  await writeFile(path.join(targetPath, 'coverage-summary.md'), htmlTable);
+  await writeFile(join(targetPath, 'coverage-summary.md'), htmlTable);
 }
 
 generateMarkdown().catch(console.error);

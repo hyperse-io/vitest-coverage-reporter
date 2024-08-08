@@ -9,7 +9,7 @@ const regexLines = /lines:\s*(\d+)/;
 const regexBranches = /branches\s*:\s*(\d+)/;
 const regexFunctions = /functions\s*:\s*(\d+)/;
 
-const parseCoverageThresholds = async (
+export const parseCoverageThresholds = async (
   vitestConfigPath: string
 ): Promise<Thresholds> => {
   try {
@@ -48,5 +48,3 @@ const parseCoverageThresholds = async (
     return {};
   }
 };
-
-export { parseCoverageThresholds };
