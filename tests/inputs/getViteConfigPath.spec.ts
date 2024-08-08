@@ -1,10 +1,10 @@
+import { join } from 'path';
 import { describe, expect, it, vi } from 'vitest';
 import * as core from '@actions/core';
 import { getViteConfigPath } from '../../src/inputs/getViteConfigPath.js';
-import { getDirname } from '../../src/utils/getDirname.js';
 
 describe('getViteConfigPath', () => {
-  const mockWorkingDirectory = getDirname(import.meta.url, '../mockConfig');
+  const mockWorkingDirectory = join(__dirname, '../mockConfig');
 
   it('resolves with a full path if a file at the provided path exists', async (): Promise<void> => {
     await expect(

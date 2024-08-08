@@ -2,13 +2,12 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { parseVitestJsonSummary } from '../../src/inputs/parseVitestJsonReports.js';
 import { generateSummaryTableHtml } from '../../src/report/generateSummaryTableHtml.js';
-import { getDirname } from '../../src/utils/getDirname.js';
 
-const basePath = getDirname(import.meta.url, '../mockReports', 'coverage');
+const basePath = join(__dirname, '../mockReports', 'coverage');
 const coveragePath = resolve(basePath, 'coverage-summary.json');
 const coverageComparePath = resolve(basePath, 'coverage-summary-compare.json');
 
-const targetPath = getDirname(import.meta.url, '..', 'tmp');
+const targetPath = join(__dirname, '..', 'tmp');
 
 async function generateMarkdown() {
   // Parse the coverage reports

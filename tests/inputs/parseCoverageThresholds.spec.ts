@@ -1,7 +1,6 @@
-import path from 'node:path';
+import path, { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { parseCoverageThresholds } from '../../src/inputs/parseCoverageThresholds.js';
-import { getDirname } from '../../src/utils/getDirname.js';
 
 // Avoid logging warnings to the console during tests by stubbing the warning functions.
 vi.mock('@actions/core', async (importOriginal) => ({
@@ -10,7 +9,7 @@ vi.mock('@actions/core', async (importOriginal) => ({
 }));
 
 describe('generateTableData', () => {
-  const mockConfigPath = getDirname(import.meta.url, '../mockConfig');
+  const mockConfigPath = join(__dirname, '../mockConfig');
   const getConfig = (configName: string) =>
     path.resolve(mockConfigPath, configName);
 

@@ -2,11 +2,10 @@ import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { generateBadges } from '../../src/report/generateBadges.js';
 import { JsonSummary } from '../../src/types/JsonSummary.js';
-import { getDirname } from '../../src/utils/getDirname.js';
 import { createMockJsonSummary } from '../testUtils/JsonSummaryMockFactory.js';
 
 describe('generateBadges()', () => {
-  const fixtureCwd = getDirname(import.meta.url, './');
+  const fixtureCwd = join(__dirname, './');
   it('generates the headline', async () => {
     const jsonSummary: JsonSummary = createMockJsonSummary({});
     await generateBadges({
