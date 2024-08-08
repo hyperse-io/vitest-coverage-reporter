@@ -8,16 +8,17 @@ export async function readOptions() {
   // Working directory can be used to modify all default/provided paths (for monorepos, etc)
   const workingDirectory = core.getInput('working-directory');
 
-  const fileCoverageModeRaw = core.getInput('file-coverage-mode'); // all/changes/none
+  // all/changes/none
+  const fileCoverageModeRaw = core.getInput('file-coverage-mode');
   const fileCoverageMode = getCoverageModeFrom(fileCoverageModeRaw);
 
   const jsonSummaryPath = path.resolve(
     workingDirectory,
-    core.getInput('json-summary-path')
+    core.getInput('json-summary-path') || 'coverage/coverage-summary.json'
   );
   const jsonFinalPath = path.resolve(
     workingDirectory,
-    core.getInput('json-final-path')
+    core.getInput('json-final-path') || 'coverage/coverage-final.json'
   );
 
   const jsonSummaryCompareInput = core.getInput('json-summary-compare-path');
