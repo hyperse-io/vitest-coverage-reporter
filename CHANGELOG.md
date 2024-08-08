@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.2
+
+### Patch Changes
+
+- [`b36c125`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/b36c1254407d488fed110b5e87d94336602f9c95) Thanks [@tianyingchun](https://github.com/tianyingchun)! - add `default` value for json-summary-path, json-final-path
+
 ## 1.0.1
 
 ### Patch Changes
