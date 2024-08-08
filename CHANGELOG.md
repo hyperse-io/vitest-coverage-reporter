@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.8
+
+### Patch Changes
+
+- [`4ba00fe`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/4ba00fef068d949de20ad5584968e08cf738d453) Thanks [@tianyingchun](https://github.com/tianyingchun)! - add `module"
+
 ## 1.0.7
 
 ### Patch Changes
