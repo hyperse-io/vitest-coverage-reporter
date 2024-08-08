@@ -1,4 +1,4 @@
-name: 'Vitest Coverage Reporter'
+name: 'Hyperse Vitest Coverage Reporter'
 description: 'Provide a Vitest Test Coverage Report as Step-Summary and comment in Pull Requests'
 author: 'Hyperse.net'
 inputs:
