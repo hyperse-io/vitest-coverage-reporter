@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.9
+
+### Patch Changes
+
+- [`41d16d4`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/41d16d4d4b98029d5c1e4ca2cda86274e7bc35ac) Thanks [@tianyingchun](https://github.com/tianyingchun)! - update `commonjs`
+
 ## 1.0.8
 
 ### Patch Changes
