@@ -1,6 +1,6 @@
 {
   "name": "@hyperse/vitest-coverage-reporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Using gitHub action for creating markdown coverage report, badges from Istanbul json report",
   "keywords": [
     "hyperse",
