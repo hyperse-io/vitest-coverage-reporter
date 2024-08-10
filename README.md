@@ -15,9 +15,9 @@
   </a>
 </p>
 
-## Coverage Report
+<!-- hyperse-vitest-coverage-reporter-marker-readme-start -->
 
-<table> <thead> <tr> <th align="center">Status</th> <th align="left">Category</th> <th align="right">Percentage</th> <th align="right">Covered / Total</th> </tr> </thead> <tbody> <tr> <td align="center">🔵</td> <td align="left">Lines</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Statements</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Functions</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Branches</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> </tbody> </table>
+<!-- hyperse-vitest-coverage-reporter-marker-readme-end -->
 
 This GitHub Action reports vitest coverage results as a GitHub step-summary and as a comment on a pull request
 

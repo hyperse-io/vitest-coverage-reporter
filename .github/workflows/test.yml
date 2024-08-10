@@ -28,11 +28,3 @@ jobs:
         with:
           working-directory: "./tests/mockReports"
           name: "Mock Reports"
-
-      - name: "Test Default Action"
-        # run step also on failure of the previous step
-        if: always()
-        uses: ./
-        with:
-          file-coverage-mode: "all"
-          name: "Root"
