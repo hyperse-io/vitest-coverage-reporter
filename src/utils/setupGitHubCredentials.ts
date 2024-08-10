@@ -1,11 +1,12 @@
 import { writeFile } from 'fs/promises';
 import * as core from '@actions/core';
+import { getGithubToken } from '../inputs/getGithubToken.js';
 import { gitUtils } from './gitUtils.js';
 
 export const setupGitHubCredentials = async () => {
-  const githubToken = process.env.GITHUB_TOKEN;
+  const gitHubToken = getGithubToken();
 
-  if (!githubToken) {
+  if (!gitHubToken) {
     core.setFailed(
       'Please add the GITHUB_TOKEN to the vitest-coverage-report action'
     );
@@ -19,6 +20,6 @@ export const setupGitHubCredentials = async () => {
   core.info('setting GitHub credentials');
   await writeFile(
     `${process.env.HOME}/.netrc`,
-    `machine github.com\nlogin github-actions[bot]\npassword ${githubToken}`
+    `machine github.com\nlogin github-actions[bot]\npassword ${gitHubToken}`
   );
 };

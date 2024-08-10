@@ -2,6 +2,8 @@ import { readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { getPullRequestBranchName } from './getPullRequestBranchName.js';
+import { getPullRequestNumber } from './getPullRequestNumber.js';
 // import { getChangedPackages } from './getChangedPackages.js';
 import { getReadmeEntry } from './getReadmeEntry.js';
 import { getWorkspacePackages } from './getWorkspacePackages.js';
@@ -17,12 +19,21 @@ export const writeSummaryToReadMe = async (
   summary: typeof core.summary,
   headline: string
 ) => {
+  const pullRequestNumber = await getPullRequestNumber();
+  if (!pullRequestNumber) {
+    core.info(
+      'No pull-request-number found. Skipping write coverage summary to README.md'
+    );
+    return;
+  }
+  // setup github credentials
   await setupGitHubCredentials();
   const commitMessage = `chore: update README.md coverage report`;
   const cwd = process.cwd();
   const workspacePackages = await getWorkspacePackages(cwd);
   const readmeUpdateBody = `${headline}\n\n${summary.stringify()}`;
-  const pullOriginBranch = github.context.ref.replace('refs/heads/', '');
+  const pullOriginBranch = await getPullRequestBranchName(pullRequestNumber);
+
   core.info(`PR ref branch is: ${pullOriginBranch}`);
 
   await gitUtils.switchToMaybeExistingBranch(pullOriginBranch);

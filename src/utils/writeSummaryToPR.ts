@@ -1,9 +1,8 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { getPullRequestNumberFromTriggeringWorkflow } from './getPullRequestNumberFromTriggeringWorkflow.js';
+import { getOctokit } from './getOctokit.js';
+import { getPullRequestNumber } from './getPullRequestNumber.js';
 
-const gitHubToken = core.getInput('github-token').trim();
-const octokit: Octokit = github.getOctokit(gitHubToken);
 const COMMENT_MARKER = (markerPostfix = 'root') =>
   `<!-- vitest-coverage-report-marker-${markerPostfix} -->`;
 
@@ -19,24 +18,14 @@ export const writeSummaryToPR = async ({
   userDefinedPrNumber?: number;
 }) => {
   // The user-defined pull request number takes precedence
-  let pullRequestNumber = userDefinedPrNumber;
-
-  if (!pullRequestNumber) {
-    // If in the context of a pull-request, get the pull-request number
-    pullRequestNumber = github.context.payload.pull_request?.number;
-
-    // This is to allow commenting on pull_request from forks
-    if (github.context.eventName === 'workflow_run') {
-      pullRequestNumber =
-        await getPullRequestNumberFromTriggeringWorkflow(octokit);
-    }
-  }
+  const pullRequestNumber = await getPullRequestNumber(userDefinedPrNumber);
 
   if (!pullRequestNumber) {
     core.info('No pull-request-number found. Skipping comment creation.');
     return;
   }
 
+  const octokit = getOctokit();
   const commentBody = `${summary.stringify()}\n\n${COMMENT_MARKER(markerPostfix)}`;
   const existingComment = await findCommentByBody(
     octokit,

@@ -1,9 +1,8 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { RequestError } from '@octokit/request-error';
+import { getOctokit } from '../utils/getOctokit.js';
 import { FileCoverageMode } from './getCoverageModeFrom.js';
-
-type Octokit = ReturnType<typeof github.getOctokit>;
 
 export async function getPullChanges(
   fileCoverageMode: FileCoverageMode
@@ -18,10 +17,9 @@ export async function getPullChanges(
     return [];
   }
 
-  const gitHubToken = core.getInput('github-token').trim();
   const prNumber = github.context.payload.pull_request.number;
   try {
-    const octokit: Octokit = github.getOctokit(gitHubToken);
+    const octokit = getOctokit();
     const paths: string[] = [];
 
     core.startGroup(

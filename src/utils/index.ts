@@ -1,4 +1,7 @@
 export * from './getChangedPackages.js';
+export * from './getOctokit.js';
+export * from './getPullRequestBranchName.js';
+export * from './getPullRequestNumber.js';
 export * from './getPullRequestNumberFromTriggeringWorkflow.js';
 export * from './getReadmeEntry.js';
 export * from './getWorkspacePackages.js';
