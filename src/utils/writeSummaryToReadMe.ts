@@ -36,7 +36,7 @@ export const writeSummaryToReadMe = async (
   // project with `commit: true` setting could have already committed files
   if (!(await gitUtils.checkIfClean())) {
     const finalCommitMessage = `${commitMessage}`;
-    await gitUtils.commitFiles(['**/README.md'], finalCommitMessage);
+    await gitUtils.commitAll(finalCommitMessage);
   }
 
   const branch = github.context.ref.replace('refs/heads/', '');

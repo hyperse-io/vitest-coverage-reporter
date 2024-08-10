@@ -128,3 +128,5 @@ out
 .DS_Store
 .netrc
 tmp
+dist/
+
