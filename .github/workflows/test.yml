@@ -28,3 +28,8 @@ jobs:
         with:
           working-directory: "./tests/mockReports"
           name: "Mock Reports"
+        env:
+          # See https://github.com/changesets/action/issues/147
+          HOME: ${{ github.workspace }}
+          # Allows to download / query / comment packages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

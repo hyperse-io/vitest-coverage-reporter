@@ -5,6 +5,18 @@ const commitAll = async (message: string) => {
   await exec('git', ['commit', '-m', message]);
 };
 
+/**
+ * Commit files to the git repository
+ * @param files - The files to commit
+ * @param message
+ */
+export const commitFiles = async (files: string[], message: string) => {
+  for (const file of files) {
+    await exec('git', ['add', file]);
+  }
+  await exec('git', ['commit', '-m', message]);
+};
+
 const push = async (branch: string, { force }: { force?: boolean } = {}) => {
   await exec(
     'git',
@@ -20,7 +32,8 @@ const checkIfClean = async (): Promise<boolean> => {
 };
 
 export const gitUtils = {
-  commitAll,
   push,
+  commitAll,
+  commitFiles,
   checkIfClean,
 };

@@ -30,11 +30,13 @@ export const writeSummaryToReadMe = async (
       readmeContents.replace(entry.content, readmeUpdateBody)
     );
   }
+
   // project with `commit: true` setting could have already committed files
   if (!(await gitUtils.checkIfClean())) {
     const finalCommitMessage = `${commitMessage}`;
-    await gitUtils.commitAll(finalCommitMessage);
+    await gitUtils.commitFiles(['**/README.md'], finalCommitMessage);
   }
+
   const branch = github.context.ref.replace('refs/heads/', '');
   core.info(`Pushing README.md changes to branch ${branch}...`);
   await gitUtils.push(branch, { force: true });
