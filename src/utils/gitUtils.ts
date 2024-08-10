@@ -31,8 +31,18 @@ const checkIfClean = async (): Promise<boolean> => {
   return !stdout.length;
 };
 
+const setupUser = async () => {
+  await exec('git', ['config', 'user.name', `"github-actions[bot]"`]);
+  await exec('git', [
+    'config',
+    'user.email',
+    `"github-actions[bot]@users.noreply.github.com"`,
+  ]);
+};
+
 export const gitUtils = {
   push,
+  setupUser,
   commitAll,
   commitFiles,
   checkIfClean,

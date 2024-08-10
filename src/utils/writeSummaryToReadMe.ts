@@ -6,6 +6,7 @@ import * as github from '@actions/github';
 import { getReadmeEntry } from './getReadmeEntry.js';
 import { getWorkspacePackages } from './getWorkspacePackages.js';
 import { gitUtils } from './gitUtils.js';
+import { setupGitHubCredentials } from './setupGitHubCredentials.js';
 
 /**
  * Write the vitest coverage summary to the README
@@ -16,6 +17,7 @@ export const writeSummaryToReadMe = async (
   summary: typeof core.summary,
   headline: string
 ) => {
+  await setupGitHubCredentials();
   const commitMessage = `chore: update README.md coverage report`;
   const cwd = process.cwd();
   const workspacePackages = await getWorkspacePackages(cwd);
