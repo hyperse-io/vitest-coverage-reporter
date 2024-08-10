@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getChangedPackages() > Should correct resolve file changed packages 1`] = `[]`;

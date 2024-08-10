@@ -7,6 +7,7 @@ describe('getWorkspacePackages()', () => {
     const packages = await getWorkspacePackages(fixtureCwd);
     for (const [dir, meta] of packages) {
       expect(dir).toBeDefined();
+      console.log(dir);
       expect({
         meta,
       }).toMatchSnapshot();

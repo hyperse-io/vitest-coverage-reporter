@@ -9,7 +9,7 @@ inputs:
   write-summary-to-readme:
       required: false
       description: 'Write the coverage summary to the README.md file.'
-      default: ''
+      default: '## Coverage Report'
   vite-config-path:
       required: false
       description: 'The path to the vite config file. By default, looks for paths by the pattern "vite[st].config.{t|mt|ct|j|mj|cj}s".'
