@@ -26,6 +26,25 @@ const push = async (branch: string, { force }: { force?: boolean } = {}) => {
   );
 };
 
+export const switchToMaybeExistingBranch = async (branch: string) => {
+  const { stderr } = await getExecOutput('git', ['checkout', branch], {
+    ignoreReturnCode: true,
+  });
+  const isCreatingBranch = !stderr
+    .toString()
+    .includes(`Switched to a new branch '${branch}'`);
+  if (isCreatingBranch) {
+    await exec('git', ['checkout', '-b', branch]);
+  }
+};
+
+export const reset = async (
+  pathSpec: string,
+  mode: 'hard' | 'soft' | 'mixed' = 'hard'
+) => {
+  await exec('git', ['reset', `--${mode}`, pathSpec]);
+};
+
 const checkIfClean = async (): Promise<boolean> => {
   const { stdout } = await getExecOutput('git', ['status', '--porcelain']);
   return !stdout.length;
@@ -46,4 +65,6 @@ export const gitUtils = {
   commitAll,
   commitFiles,
   checkIfClean,
+  switchToMaybeExistingBranch,
+  reset,
 };

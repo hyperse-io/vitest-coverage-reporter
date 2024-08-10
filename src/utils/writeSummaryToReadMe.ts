@@ -22,6 +22,12 @@ export const writeSummaryToReadMe = async (
   const cwd = process.cwd();
   const workspacePackages = await getWorkspacePackages(cwd);
   const readmeUpdateBody = `${headline}\n\n${summary.stringify()}`;
+  const pullOriginBranch = github.context.ref.replace('refs/heads/', '');
+  core.info(`PR ref branch is: ${pullOriginBranch}`);
+
+  await gitUtils.switchToMaybeExistingBranch(pullOriginBranch);
+  await gitUtils.reset(github.context.sha);
+
   // const changedPackages = await getChangedPackages(cwd, workspacePackages);
   for (const [dir] of workspacePackages) {
     const readmeFile = join(dir, 'README.md');
@@ -39,7 +45,5 @@ export const writeSummaryToReadMe = async (
     await gitUtils.commitAll(finalCommitMessage);
   }
 
-  const branch = github.context.ref.replace('refs/heads/', '');
-  core.info(`Pushing README.md changes to branch ${branch}...`);
-  await gitUtils.push(branch, { force: true });
+  await gitUtils.push(pullOriginBranch, { force: true });
 };
