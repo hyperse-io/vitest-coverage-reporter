@@ -8,6 +8,11 @@ export async function readOptions() {
   // Working directory can be used to modify all default/provided paths (for monorepos, etc)
   const workingDirectory = core.getInput('working-directory');
 
+  // The coverage report can be written to the README.md file, can be true
+  // we need to placed `marker` token in the README.md file `<!-- hyperse-vitest-coverage-reporter-marker-readme -->`
+  // normally we need to set it as sub headline `## Coverage Report`
+  const writeSummaryToReadme = core.getInput('write-summary-to-readme');
+
   // all/changes/none
   const fileCoverageModeRaw = core.getInput('file-coverage-mode');
   const fileCoverageMode = getCoverageModeFrom(fileCoverageModeRaw);
@@ -60,5 +65,6 @@ export async function readOptions() {
     thresholds,
     workingDirectory,
     processedPrNumber,
+    writeSummaryToReadme,
   };
 }

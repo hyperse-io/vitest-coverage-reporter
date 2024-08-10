@@ -13,6 +13,7 @@ import { generateHeadline } from './report/generateHeadline.js';
 import { generateSummaryTableHtml } from './report/generateSummaryTableHtml.js';
 import type { JsonSummary } from './types/JsonSummary.js';
 import { writeSummaryToPR } from './utils/writeSummaryToPR.js';
+import { writeSummaryToReadMe } from './utils/writeSummaryToReadMe.js';
 
 const run = async () => {
   const {
@@ -24,6 +25,7 @@ const run = async () => {
     thresholds,
     workingDirectory,
     processedPrNumber,
+    writeSummaryToReadme,
   } = await readOptions();
 
   const jsonSummary = await parseVitestJsonSummary(jsonSummaryPath);
@@ -59,10 +61,18 @@ const run = async () => {
     `<em>Generated in workflow <a href=${getWorkflowSummaryURL()}>#${github.context.runNumber}</a></em>`
   );
 
+  // If we want to write the coverage to the README, we do not need to write to the PR
+  if (writeSummaryToReadme) {
+    core.info('Writing summary to README...');
+    await writeSummaryToReadMe(summary, writeSummaryToReadme);
+  }
+
   try {
+    const markerPostfix = getMarkerPostfix({ name, workingDirectory });
+
     await writeSummaryToPR({
       summary,
-      markerPostfix: getMarkerPostfix({ name, workingDirectory }),
+      markerPostfix,
       userDefinedPrNumber: processedPrNumber,
     });
   } catch (error) {

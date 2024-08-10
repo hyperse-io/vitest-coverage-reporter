@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getReadmeEntry() > Should correct parse readme entry 1`] = `
+"## Coverage Report
+
+<table> <thead> <tr> <th align="center">Status</th> <th align="left">Category</th> <th align="right">Percentage</th> <th align="right">Covered / Total</th> </tr> </thead> <tbody> <tr> <td align="center">🔵</td> <td align="left">Lines</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Statements</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Functions</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Branches</td> <td align="right">5%</td> <td align="right">5 / 100</td> </tr> </tbody> </table>
+"
+`;

@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getWorkspacePackages() > Should correct resolve workspace packages 1`] = `
+{
+  "meta": {
+    "name": "fixture-package1",
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`getWorkspacePackages() > Should correct resolve workspace packages 2`] = `
+{
+  "meta": {
+    "name": "fixture-package2",
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`getWorkspacePackages() > Should correct resolve workspace packages 3`] = `
+{
+  "meta": {
+    "name": "fixture-website",
+    "version": "1.0.0",
+  },
+}
+`;

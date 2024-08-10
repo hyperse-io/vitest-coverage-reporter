@@ -5,7 +5,7 @@
 | HelloWorld.vue       | 100     | 100      | 100     | 100     |                   |
 | TheWelcome.vue       | 0       | 0        | 0       | 0       | 1-93              |
 | WelcomeItem.vue      | 0       | 0        | 0       | 0       | 1-86              |
-| components/__tests__ | 100     | 100      | 100     | 100     |                   |
+| components/**tests** | 100     | 100      | 100     | 100     |                   |
 | HelloWorld.spec.ts   | 100     | 100      | 100     | 100     |                   |
 | router               | 0       | 0        | 0       | 0       |                   |
 | index.ts             | 0       | 0        | 0       | 0       | 1-23              |

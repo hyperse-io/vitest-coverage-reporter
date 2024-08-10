@@ -6,6 +6,10 @@ inputs:
       required: false
       description: 'A github access token with permissions to write to issues. Uses secrets.GITHUB_TOKEN by default.'
       default: ${{ github.token }}
+  write-summary-to-readme:
+      required: false
+      description: 'Write the coverage summary to the README.md file.'
+      default: ''
   vite-config-path:
       required: false
       description: 'The path to the vite config file. By default, looks for paths by the pattern "vite[st].config.{t|mt|ct|j|mj|cj}s".'
