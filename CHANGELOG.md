@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.13
+
+### Patch Changes
+
+- [`5d97fc7`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/5d97fc79bc3064b22ae6338ac26fa3de7d7a87ca) Thanks [@tianyingchun](https://github.com/tianyingchun)! - allow `dist` commit to source control
+
 ## 1.0.12
 
 ### Patch Changes
