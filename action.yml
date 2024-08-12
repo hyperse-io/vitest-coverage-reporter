@@ -32,6 +32,10 @@ inputs:
       required: false
       description: 'Custom repo directory'
       default: ./
+  include-all-projects:
+      required: false
+      description: 'Include all projects or auto detect file changed project in the pull request.'
+      default: 'false'
   name:
       required: false
       description: 'The name of the coverage report. Can be used to execute this action multiple times. '

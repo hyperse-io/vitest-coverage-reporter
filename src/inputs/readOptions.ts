@@ -5,6 +5,9 @@ export async function readOptions() {
   // Working directory can be used to modify all default/provided paths (for monorepos, etc)
   const repoCwd = core.getInput('repo-cwd');
 
+  // Whether to include only the projects or detect project that have changed files in the PR
+  const includeAllProjects = core.getInput('include-all-projects') === 'true';
+
   // all/changes/none
   const fileCoverageModeRaw = core.getInput('file-coverage-mode');
   const fileCoverageMode = getCoverageModeFrom(fileCoverageModeRaw);
@@ -26,5 +29,6 @@ export async function readOptions() {
     repoCwd,
     fileCoverageMode,
     processedPrNumber,
+    includeAllProjects,
   };
 }

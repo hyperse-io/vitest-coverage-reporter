@@ -17,13 +17,19 @@ function getMarkerPostfix({
 }
 
 const run = async () => {
-  const { name, processedPrNumber, repoCwd, fileCoverageMode } =
-    await readOptions();
+  const {
+    name,
+    processedPrNumber,
+    repoCwd,
+    fileCoverageMode,
+    includeAllProjects,
+  } = await readOptions();
 
   const summary = await generateCoverageSummary({
     name,
     repoCwd,
     fileCoverageMode,
+    includeAllProjects,
   });
 
   try {

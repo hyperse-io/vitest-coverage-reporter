@@ -4,17 +4,21 @@ import { FileCoverageMode } from './getCoverageModeFrom';
 import { getPullChanges } from './getPullChanges';
 import { getWorkspacePackages } from './getWorkspacePackages';
 
-export async function getChangedPackages(repoCwd: string) {
+export async function getChangedPackages(
+  repoCwd: string,
+  includeAllProjects = false
+) {
   const workspacePackages = await getWorkspacePackages(repoCwd);
   const changedPackages = new Set<Package>();
   const allChangedFiles = await getPullChanges(FileCoverageMode.All);
-  core.info(`allChangedFiles: ${JSON.stringify(allChangedFiles, null, 2)}`);
+  core.debug(`allChangedFiles: ${JSON.stringify(allChangedFiles, null, 2)}`);
   for (const [dir, { name, relativeDir, version }] of workspacePackages) {
-    const packageChanged = allChangedFiles.find(
-      (s) => !!~s.indexOf(relativeDir)
-    );
-    core.info(`package(${name}: ${relativeDir}) is: ${packageChanged}`);
-    if (packageChanged) {
+    const includeThisProject =
+      includeAllProjects ||
+      allChangedFiles.find((s) => !!~s.indexOf(relativeDir));
+
+    core.info(`package(${name}: ${relativeDir}) is: ${includeThisProject}`);
+    if (includeThisProject) {
       changedPackages.add({
         dir,
         relativeDir,

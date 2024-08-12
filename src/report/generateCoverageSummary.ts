@@ -18,12 +18,16 @@ type GenerateCoverageSummaryOptions = {
   name: string;
   repoCwd: string;
   fileCoverageMode: FileCoverageMode;
+  includeAllProjects: boolean;
 };
 
 export const generateCoverageSummary = async (
   options: GenerateCoverageSummaryOptions
 ): Promise<typeof core.summary> => {
-  const changedPackages = await getChangedPackages(options.repoCwd);
+  const changedPackages = await getChangedPackages(
+    options.repoCwd,
+    options.includeAllProjects
+  );
   const summary = core.summary.addHeading(
     generateHeadline({
       name: options.name,

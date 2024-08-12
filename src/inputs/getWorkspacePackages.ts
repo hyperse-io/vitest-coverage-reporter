@@ -21,7 +21,8 @@ export async function getWorkspacePackages(
           {
             name: packageJson.name,
             version: packageJson.version,
-            relativeDir: './',
+            // always keep relativeDir as empty string for non-monorepo
+            relativeDir: '',
           },
         ],
       ]);
