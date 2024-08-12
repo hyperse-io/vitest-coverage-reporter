@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { MockInstance } from 'vitest';
-import * as parseJsonReports from '../src/inputs/parseVitestJsonReports.js';
+import * as parseJsonReports from '../src/inputs/parseVitestJsonFinalReport.js';
 import * as readOptions from '../src/inputs/readOptions.js';
 import { main } from '../src/main.js';
 import * as generateBadges from '../src/report/generateBadges.js';
@@ -15,6 +15,8 @@ describe('test cli main command `generate-badges`', () => {
     (options: GenerateBadgesOptions) => Promise<void>
   >;
 
+  const fixtureCwd = join(__dirname, 'fixtures/main');
+
   beforeEach(() => {
     vi.spyOn(readOptions, 'readOptions').mockResolvedValue({
       jsonSummaryPath: '',
@@ -24,26 +26,44 @@ describe('test cli main command `generate-badges`', () => {
       .spyOn(generateBadges, 'generateBadges')
       .mockResolvedValue();
 
-    vi.spyOn(parseJsonReports, 'parseVitestJsonSummary').mockResolvedValue(
-      jsonSummary
-    );
+    vi.spyOn(
+      parseJsonReports,
+      'parseVitestJsonSummaryReport'
+    ).mockResolvedValue(jsonSummary);
   });
 
   afterAll(() => {
     vi.restoreAllMocks();
   });
 
-  it('Shold correct read command line default pareamenters', async () => {
-    await main([]);
+  it('Shold correct read command line `default` pareamenters', async () => {
+    await main(['--projectCwd', fixtureCwd]);
     expect(generateBadgesStub).toHaveBeenCalledOnce();
     expect(generateBadgesStub).toBeCalledWith({
-      badgesSavedTo: join(process.cwd(), 'coverage/badges'),
+      badgesSavedTo: join(fixtureCwd, 'coverage/badges'),
       totalCoverageReport: jsonSummary.total,
     });
   });
 
-  it('Shold correct read command line pareamenters', async () => {
-    await main(['-p', '/test/p']);
+  it('Shold correct read command line pareamenters `--path`', async () => {
+    await main(['-p', '/test/p', '--projectCwd', fixtureCwd]);
+    expect(generateBadgesStub).toHaveBeenCalledOnce();
+    expect(generateBadgesStub).toBeCalledWith({
+      badgesSavedTo: '/test/p',
+      totalCoverageReport: jsonSummary.total,
+    });
+  });
+  it('Shold correct read command line pareamenters `--type`', async () => {
+    await main([
+      '-p',
+      '/test/p',
+      '--type',
+      'badges',
+      '--type',
+      'readme',
+      '--projectCwd',
+      fixtureCwd,
+    ]);
     expect(generateBadgesStub).toHaveBeenCalledOnce();
     expect(generateBadgesStub).toBeCalledWith({
       badgesSavedTo: '/test/p',

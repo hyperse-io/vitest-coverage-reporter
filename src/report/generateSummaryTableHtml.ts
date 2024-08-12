@@ -1,5 +1,5 @@
 import { oneLine } from 'common-tags';
-import { icons } from '../icons.js';
+import { icons } from '../constants.js';
 import type { CoverageReport, ReportNumbers } from '../types/JsonSummary.js';
 import type { Thresholds } from '../types/Threshold.js';
 

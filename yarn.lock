@@ -22,15 +22,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/exec@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@actions/exec@npm:1.1.1"
-  dependencies:
-    "@actions/io": "npm:^1.0.1"
-  checksum: 10/c04bd25191e522841c7e17862d70099de8db61278d2b4c744b69ac0197a48f85c75dba548e1c29c695c4cc5363d558846b4dcd3db9013463c18ba8cf36497c6d
-  languageName: node
-  linkType: hard
-
 "@actions/github@npm:6.0.0":
   version: 6.0.0
   resolution: "@actions/github@npm:6.0.0"
@@ -50,13 +41,6 @@ __metadata:
     tunnel: "npm:^0.0.6"
     undici: "npm:^5.25.4"
   checksum: 10/b7338f13461eeca945acc9ccdd20a46e545624dc872bc12869eca7d9a58536ee3e1ecc0d1a1d4c16e8610c2b783e7108e12148b6db5d7fb8bf8b950b8a002d66
-  languageName: node
-  linkType: hard
-
-"@actions/io@npm:^1.0.1":
-  version: 1.1.3
-  resolution: "@actions/io@npm:1.1.3"
-  checksum: 10/4de44e8d428ba9f20049c844b37ecd486b589ed201f8cc8c5b550a9e4c72d1f594271ee2a7a6cfe8a42ebfb5dd527ef65016454656db391a353d41eab4f147e1
   languageName: node
   linkType: hard
 
@@ -1121,10 +1105,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.8.0, @eslint/js@npm:^9.8.0":
-  version: 9.8.0
-  resolution: "@eslint/js@npm:9.8.0"
-  checksum: 10/1c6ddbcc9f45f0165d9e218c085543536c03b4b650449a6f38f4e2b65b1d6bcd5f24f7feae72fca14d3697073cbdb413f270baef0f744cb0fb9e11ce9c84dbcc
+"@eslint/js@npm:9.9.0, @eslint/js@npm:^9.9.0":
+  version: 9.9.0
+  resolution: "@eslint/js@npm:9.9.0"
+  checksum: 10/9d6e94d0334aecaa7e5c78e654297d9b11679f56c8ec1b64db122cbecf64b5a04138617e901d0c79727d03abce8a898cce4288259435bde78460ebdab202998f
   languageName: node
   linkType: hard
 
@@ -1156,12 +1140,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hyperse/eslint-config-hyperse@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@hyperse/eslint-config-hyperse@npm:1.1.1"
+"@hyperse/eslint-config-hyperse@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@hyperse/eslint-config-hyperse@npm:1.1.3"
   dependencies:
-    "@eslint/js": "npm:^9.8.0"
+    "@eslint/js": "npm:^9.9.0"
     "@next/eslint-plugin-next": "npm:rc"
+    "@vitest/eslint-plugin": "npm:^1.0.1"
     app-root-path: "npm:^3.1.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-define-config: "npm:^2.1.0"
@@ -1174,7 +1159,6 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
     eslint-plugin-sonarjs: "npm:^1.0.4"
     eslint-plugin-tailwindcss: "npm:^3.17.4"
-    eslint-plugin-vitest-2: "npm:^0.6.1"
     get-tsconfig: "npm:^4.7.6"
     globals: "npm:^15.9.0"
     prettier: "npm:^3.3.3"
@@ -1183,7 +1167,7 @@ __metadata:
   peerDependencies:
     eslint: ">=9.3.0"
     typescript: ^5.4.3
-  checksum: 10/ed01ebfecd7e0967d8e49916b291f8d9d8cfae742a6c3cb5229b154781fcd9694fcf5b62c48376af8ff2490fb054361e4f9cf4f4e751eacd75eba252a6fe4f70
+  checksum: 10/83bda11a5ce1ad86abfbf2974c0f3f60d582899a3fc88659c8d41e80eeaec7ef60117d46ec38d9269eb35bbd0a680bc456fad3036b3b5025b5c3bcc4c7846e1c
   languageName: node
   linkType: hard
 
@@ -1205,24 +1189,23 @@ __metadata:
   resolution: "@hyperse/vitest-coverage-reporter@workspace:."
   dependencies:
     "@actions/core": "npm:1.10.1"
-    "@actions/exec": "npm:^1.1.1"
     "@actions/github": "npm:6.0.0"
     "@changesets/changelog-github": "npm:0.5.0"
     "@changesets/cli": "npm:2.27.7"
     "@commitlint/cli": "npm:19.4.0"
     "@commitlint/config-conventional": "npm:19.2.2"
-    "@hyperse/eslint-config-hyperse": "npm:^1.1.1"
+    "@hyperse/eslint-config-hyperse": "npm:^1.1.3"
     "@hyperse/ts-node-paths": "npm:^1.0.9"
     "@manypkg/get-packages": "npm:^2.2.2"
     "@types/common-tags": "npm:1.8.4"
     "@types/minimist": "npm:^1.2.5"
-    "@types/node": "npm:^22.1.0"
+    "@types/node": "npm:^22.2.0"
     "@vitest/coverage-istanbul": "npm:^2.0.5"
     commitizen: "npm:4.3.0"
     common-tags: "npm:1.8.2"
     cz-conventional-changelog: "npm:3.3.0"
     dotenv: "npm:^16.4.5"
-    eslint: "npm:^9.8.0"
+    eslint: "npm:^9.9.0"
     husky: "npm:9.1.4"
     lint-staged: "npm:15.2.8"
     mdast-util-to-string: "npm:^4.0.0"
@@ -1235,7 +1218,7 @@ __metadata:
     unified: "npm:^11.0.5"
     vitest: "npm:^2.0.5"
   bin:
-    generate-badges: ./bin/generate-badges.mjs
+    generate-coverage-report: ./bin/generate-coverage-report.mjs
   languageName: unknown
   linkType: soft
 
@@ -1886,12 +1869,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.1.0":
-  version: 22.1.0
-  resolution: "@types/node@npm:22.1.0"
+"@types/node@npm:*, @types/node@npm:^22.2.0":
+  version: 22.2.0
+  resolution: "@types/node@npm:22.2.0"
   dependencies:
     undici-types: "npm:~6.13.0"
-  checksum: 10/c2ac1340509646b6c673b27fae2a46e501a97e540e7221be4dd2e0be7a0f61efefb5bf3be8bedf2dbce245fa49cfc49bba77bce73fa3c4296d0d19521ced3222
+  checksum: 10/2957c5c81f1a07a1210f28382adae65c11070c301e395fa819448516f1a2a710054b29e0ec7d8e28624afbcd90dae810403a497109545dea835b554fc76edf6c
   languageName: node
   linkType: hard
 
@@ -2072,6 +2055,25 @@ __metadata:
   peerDependencies:
     vitest: 2.0.5
   checksum: 10/a663fda28c83fcaeb80425af654462173e2c44996afd22b7e45c1f386f64d2ccc3e4d8f0409a96707ae41b5a0c39a22987623b2e1b86a11f137954d17478f865
+  languageName: node
+  linkType: hard
+
+"@vitest/eslint-plugin@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@vitest/eslint-plugin@npm:1.0.1"
+  peerDependencies:
+    "@typescript-eslint/utils": ">= 8.0"
+    eslint: ">= 8.57.0"
+    typescript: ">= 5.0.0"
+    vitest: "*"
+  peerDependenciesMeta:
+    "@typescript-eslint/utils":
+      optional: true
+    typescript:
+      optional: true
+    vitest:
+      optional: true
+  checksum: 10/81fccf1dcf772f12d404b95baab8c418e4f9c19c13b3e9a8f74b1a193a28e275b01dbaf3dda40c3f4722112c2623e896eb0f93a3ea47bd12e34b4a5aae720635
   languageName: node
   linkType: hard
 
@@ -3967,25 +3969,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vitest-2@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "eslint-plugin-vitest-2@npm:0.6.1"
-  peerDependencies:
-    "@typescript-eslint/utils": ">= 7.8 || 8.0.0"
-    eslint: ">= 8.57.0"
-    typescript: ">= 5.0.0"
-    vitest: "*"
-  peerDependenciesMeta:
-    "@typescript-eslint/utils":
-      optional: true
-    typescript:
-      optional: true
-    vitest:
-      optional: true
-  checksum: 10/879dee0b325bb518e8e8a0cf904da0f346ba6399208b7f0cabb94485647f833eb42522e43768daf526c9172657ef68f0e446de64a05d4f2bf79af4614406fcee
-  languageName: node
-  linkType: hard
-
 "eslint-scope@npm:^8.0.2":
   version: 8.0.2
   resolution: "eslint-scope@npm:8.0.2"
@@ -4010,15 +3993,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.8.0":
-  version: 9.8.0
-  resolution: "eslint@npm:9.8.0"
+"eslint@npm:^9.9.0":
+  version: 9.9.0
+  resolution: "eslint@npm:9.9.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.11.0"
     "@eslint/config-array": "npm:^0.17.1"
     "@eslint/eslintrc": "npm:^3.1.0"
-    "@eslint/js": "npm:9.8.0"
+    "@eslint/js": "npm:9.9.0"
     "@humanwhocodes/module-importer": "npm:^1.0.1"
     "@humanwhocodes/retry": "npm:^0.3.0"
     "@nodelib/fs.walk": "npm:^1.2.8"
@@ -4048,9 +4031,14 @@ __metadata:
     optionator: "npm:^0.9.3"
     strip-ansi: "npm:^6.0.1"
     text-table: "npm:^0.2.0"
+  peerDependencies:
+    jiti: "*"
+  peerDependenciesMeta:
+    jiti:
+      optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10/b1dd864170ca359249c92d1d8e09a628497efcf8a4293b571308460125fb0367a15612b2b0f135ff21b92453bf324ce75843fcaac3e01734f4bee2ff79919cc3
+  checksum: 10/88616421c9cb873d8f116d1ef6aa665cc898d35361351739c8041f11c30fe004bcfa641a2b6074655393eac7e7e5f9a661675dd1c01a24cf1e65cc6b556e06b3
   languageName: node
   linkType: hard
 

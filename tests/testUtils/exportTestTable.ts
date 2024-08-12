@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import { parseVitestJsonSummary } from '../../src/inputs/parseVitestJsonReports.js';
+import { parseVitestJsonSummaryReport } from '../../src/inputs/parseVitestJsonFinalReport.js';
 import { generateSummaryTableHtml } from '../../src/report/generateSummaryTableHtml.js';
 
 const basePath = join(__dirname, '../mockReports', 'coverage');
@@ -11,9 +11,9 @@ const targetPath = join(__dirname, '..', 'tmp');
 
 async function generateMarkdown() {
   // Parse the coverage reports
-  const coverageSummary = await parseVitestJsonSummary(coveragePath);
+  const coverageSummary = await parseVitestJsonSummaryReport(coveragePath);
   const coverageSummaryCompare =
-    await parseVitestJsonSummary(coverageComparePath);
+    await parseVitestJsonSummaryReport(coverageComparePath);
 
   // Generate the HTML table
   const htmlTable = generateSummaryTableHtml(

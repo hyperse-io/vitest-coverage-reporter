@@ -1,6 +1,13 @@
 import { getPackages } from '@manypkg/get-packages';
 
-export async function getWorkspacePackages(cwd: string) {
+/**
+ * Get the workspace packages
+ * @param cwd The current working directory, repo root
+ * @returns
+ */
+export async function getWorkspacePackages(
+  cwd: string
+): Promise<Map<string, { name: string; version: string }>> {
   const { packages } = await getPackages(cwd);
   const sortedPackages: Array<[string, { name: string; version: string }]> =
     packages.map((x) => [

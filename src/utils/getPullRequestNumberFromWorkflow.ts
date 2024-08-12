@@ -1,7 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-
-type Octokit = ReturnType<typeof github.getOctokit>;
+import { getOctokit, Octokit } from './getOctokit.js';
 
 async function findPullRequest(octokit: Octokit, headSha: string) {
   core.startGroup('Querying REST API for Pull-Requests.');
@@ -29,9 +28,13 @@ async function findPullRequest(octokit: Octokit, headSha: string) {
   return undefined;
 }
 
-export async function getPullRequestNumberFromTriggeringWorkflow(
-  octokit: Octokit
-): Promise<number | undefined> {
+/**
+ * Trying to get the triggering workflow in order to find the pull-request-number to comment the results on
+ * @returns
+ */
+export async function getPullRequestNumberFromWorkflow(): Promise<
+  number | undefined
+> {
   core.info(
     'Trying to get the triggering workflow in order to find the pull-request-number to comment the results on...'
   );
@@ -44,6 +47,7 @@ export async function getPullRequestNumberFromTriggeringWorkflow(
   }
 
   const originalWorkflowRunId = github.context.payload.workflow_run.id;
+  const octokit = getOctokit();
 
   const { data: originalWorkflowRun } =
     await octokit.rest.actions.getWorkflowRun({

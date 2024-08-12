@@ -8,7 +8,6 @@ export default defineConfig((options) => [
     noExternal: [
       '@actions/core',
       '@actions/github',
-      '@actions/exec',
       '@manypkg/get-packages',
       'common-tags',
       'mdast-util-to-string',

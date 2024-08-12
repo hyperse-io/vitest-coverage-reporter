@@ -15,10 +15,6 @@
   </a>
 </p>
 
-<!-- hyperse-vitest-coverage-reporter-marker-readme-start -->
-
-<!-- hyperse-vitest-coverage-reporter-marker-readme-end -->
-
 This GitHub Action reports vitest coverage results as a GitHub step-summary and as a comment on a pull request
 
 The action generates a high-level coverage summary for all coverage categories, as well as a detailed, file-based report. The report includes links to the files themselves and the uncovered lines for easy reference.
@@ -63,7 +59,7 @@ yarn add @hyperse/vitest-coverage-reporter
 {
   "scripts": {
     "test:coverage": "vitest run --coverage",
-    "generate-badges": "generate-badges -p ./coverage/badges"
+    "generate-coverage-report": "generate-coverage-report -p ./coverage/badges"
   }
 }
 ```
@@ -105,7 +101,7 @@ jobs:
         run: yarn test:coverage
 
       - name: generate badges
-        run: yarn generate-badges
+        run: yarn generate-coverage-report
 
       - name: push coverage artifacts to another branch
         uses: peaceiris/actions-gh-pages@v4

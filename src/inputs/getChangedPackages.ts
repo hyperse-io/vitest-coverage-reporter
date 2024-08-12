@@ -4,8 +4,8 @@ export async function getChangedPackages(
   cwd: string,
   workspacePackages: Map<string, { name: string; version: string }>
 ) {
-  const { packages } = await getPackages(cwd);
   const changedPackages = new Set<Package>();
+  const { packages } = await getPackages(cwd);
 
   for (const pkg of packages) {
     const previousPackages = workspacePackages.get(pkg.dir);

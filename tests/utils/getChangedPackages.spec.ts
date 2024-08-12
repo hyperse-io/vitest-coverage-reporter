@@ -1,6 +1,6 @@
 import { join } from 'node:path';
-import { getChangedPackages } from '../../src/utils/getChangedPackages.js';
-import { getWorkspacePackages } from '../../src/utils/getWorkspacePackages.js';
+import { getChangedPackages } from '../../src/inputs/getChangedPackages.js';
+import { getWorkspacePackages } from '../../src/inputs/getWorkspacePackages.js';
 
 describe('getChangedPackages()', () => {
   const fixtureCwd = join(__dirname, 'fixtures');

@@ -1,5 +1,5 @@
 import { join } from 'node:path';
-import { getWorkspacePackages } from '../../src/utils/getWorkspacePackages.js';
+import { getWorkspacePackages } from '../../src/inputs/getWorkspacePackages.js';
 
 describe('getWorkspacePackages()', () => {
   const fixtureCwd = join(__dirname, 'fixtures');

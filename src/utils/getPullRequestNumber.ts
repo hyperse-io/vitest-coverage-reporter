@@ -1,10 +1,7 @@
 import * as github from '@actions/github';
-import { getOctokit } from './getOctokit.js';
-import { getPullRequestNumberFromTriggeringWorkflow } from './getPullRequestNumberFromTriggeringWorkflow.js';
+import { getPullRequestNumberFromWorkflow } from './getPullRequestNumberFromWorkflow.js';
 
 export const getPullRequestNumber = async (userDefinedPrNumber?: number) => {
-  const octokit = getOctokit();
-
   // The user-defined pull request number takes precedence
   let pullRequestNumber = userDefinedPrNumber;
 
@@ -14,8 +11,7 @@ export const getPullRequestNumber = async (userDefinedPrNumber?: number) => {
 
     // This is to allow commenting on pull_request from forks
     if (github.context.eventName === 'workflow_run') {
-      pullRequestNumber =
-        await getPullRequestNumberFromTriggeringWorkflow(octokit);
+      pullRequestNumber = await getPullRequestNumberFromWorkflow();
     }
   }
   return pullRequestNumber;

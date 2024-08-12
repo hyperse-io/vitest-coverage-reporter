@@ -19,8 +19,8 @@ export async function getPullChanges(
 
   const prNumber = github.context.payload.pull_request.number;
   try {
-    const octokit = getOctokit();
     const paths: string[] = [];
+    const octokit = getOctokit();
 
     core.startGroup(
       `Fetching list of changed files for PR#${prNumber} from Github API`

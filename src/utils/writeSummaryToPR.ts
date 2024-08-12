@@ -1,12 +1,10 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { getOctokit } from './getOctokit.js';
+import { getOctokit, Octokit } from './getOctokit.js';
 import { getPullRequestNumber } from './getPullRequestNumber.js';
 
 const COMMENT_MARKER = (markerPostfix = 'root') =>
   `<!-- vitest-coverage-report-marker-${markerPostfix} -->`;
-
-type Octokit = ReturnType<typeof github.getOctokit>;
 
 export const writeSummaryToPR = async ({
   summary,

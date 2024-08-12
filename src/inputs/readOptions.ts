@@ -1,38 +1,30 @@
-import * as path from 'node:path';
+import { resolve } from 'node:path';
 import * as core from '@actions/core';
+import { defaultJsonFinalPath, defaultJsonSummaryPath } from '../constants.js';
 import { getCoverageModeFrom } from './getCoverageModeFrom.js';
-import { getViteConfigPath } from './getViteConfigPath.js';
-import { parseCoverageThresholds } from './parseCoverageThresholds.js';
+import { getVitestThresholds } from './getVitestThresholds.js';
 
 export async function readOptions() {
   // Working directory can be used to modify all default/provided paths (for monorepos, etc)
   const workingDirectory = core.getInput('working-directory');
 
-  // The coverage report can be written to the README.md file, can be true
-  // we need to placed `marker` token in the README.md file `<!-- hyperse-vitest-coverage-reporter-marker-readme -->`
-  // normally we need to set it as sub headline `## Coverage Report`
-  const writeSummaryToReadme = core.getInput('write-summary-to-readme');
-
   // all/changes/none
   const fileCoverageModeRaw = core.getInput('file-coverage-mode');
   const fileCoverageMode = getCoverageModeFrom(fileCoverageModeRaw);
 
-  const jsonSummaryPath = path.resolve(
+  const jsonSummaryPath = resolve(
     workingDirectory,
-    core.getInput('json-summary-path') || 'coverage/coverage-summary.json'
+    core.getInput('json-summary-path') || defaultJsonSummaryPath
   );
-  const jsonFinalPath = path.resolve(
+  const jsonFinalPath = resolve(
     workingDirectory,
-    core.getInput('json-final-path') || 'coverage/coverage-final.json'
+    core.getInput('json-final-path') || defaultJsonFinalPath
   );
 
   const jsonSummaryCompareInput = core.getInput('json-summary-compare-path');
   let jsonSummaryComparePath: string | null = null;
   if (jsonSummaryCompareInput) {
-    jsonSummaryComparePath = path.resolve(
-      workingDirectory,
-      jsonSummaryCompareInput
-    );
+    jsonSummaryComparePath = resolve(workingDirectory, jsonSummaryCompareInput);
   }
 
   const name = core.getInput('name');
@@ -47,14 +39,10 @@ export async function readOptions() {
     core.info(`Received pull-request number: ${processedPrNumber}`);
   }
 
-  // ViteConfig is optional, as it is only required for thresholds. If no vite config is provided, we will not include thresholds in the final report.
-  const viteConfigPath = await getViteConfigPath(
+  const thresholds = await getVitestThresholds(
     workingDirectory,
-    core.getInput('vite-config-path')
+    core.getInput('thresholds')
   );
-  const thresholds = viteConfigPath
-    ? await parseCoverageThresholds(viteConfigPath)
-    : {};
 
   return {
     fileCoverageMode,
@@ -65,6 +53,5 @@ export async function readOptions() {
     thresholds,
     workingDirectory,
     processedPrNumber,
-    writeSummaryToReadme,
   };
 }

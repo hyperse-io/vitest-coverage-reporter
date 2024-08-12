@@ -2,12 +2,11 @@ import { toString } from 'mdast-util-to-string';
 import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
+import { COVERAGE_README_MARKER } from '../constants.js';
 
-export const README_MARKER_START = `<!-- hyperse-vitest-coverage-reporter-marker-readme-start -->`;
-export const README_MARKER_END = `<!-- hyperse-vitest-coverage-reporter-marker-readme-end -->`;
-
-export function getReadmeEntry(readme: string) {
+export function updateReadmeEntry(readme: string, readmeUpdateBody: string) {
   const ast = unified().use(remarkParse).parse(readme);
+  const updatedast = unified().use(remarkParse).parse(readmeUpdateBody);
 
   const nodes = ast.children;
   let headingStartInfo:
@@ -15,12 +14,7 @@ export function getReadmeEntry(readme: string) {
         index: number;
       }
     | undefined;
-
-  let headingEndInfo:
-    | {
-        index: number;
-      }
-    | undefined;
+  let endIndex: number | undefined;
 
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
@@ -28,27 +22,28 @@ export function getReadmeEntry(readme: string) {
       const stringified: string = toString(node);
       if (
         headingStartInfo === undefined &&
-        stringified === README_MARKER_START
+        stringified === COVERAGE_README_MARKER
       ) {
         headingStartInfo = {
           index: i,
         };
         continue;
       }
-
-      if (headingEndInfo === undefined && stringified === README_MARKER_END) {
-        headingEndInfo = {
-          index: i,
-        };
+      if (endIndex === undefined && headingStartInfo !== undefined) {
+        endIndex = i;
         break;
       }
     }
   }
-  if (headingStartInfo && headingEndInfo) {
-    ast.children = ast.children.slice(
-      headingStartInfo.index + 1,
-      headingEndInfo.index
+
+  if (headingStartInfo && endIndex) {
+    ast.children.splice(
+      headingStartInfo.index,
+      endIndex - headingStartInfo.index + 1,
+      ...updatedast.children
     );
+  } else {
+    ast.children.splice(2, 0, ...updatedast.children);
   }
   return {
     content: unified().use(remarkStringify).stringify(ast),

@@ -1,6 +1,6 @@
-import { createWriteStream, existsSync, mkdirSync } from 'fs';
-import https from 'https';
-import { resolve } from 'path';
+import { createWriteStream, existsSync, mkdirSync } from 'node:fs';
+import https from 'node:https';
+import { resolve } from 'node:path';
 import { CoverageReport } from '../types/JsonSummary.js';
 
 /**

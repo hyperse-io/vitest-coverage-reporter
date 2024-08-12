@@ -1,10 +1,10 @@
 import { stripIndent } from 'common-tags';
 import { constants, promises as fs } from 'node:fs';
-import path from 'node:path';
+import { resolve } from 'node:path';
 import * as core from '@actions/core';
 
 const testFilePath = async (workingDirectory: string, filePath: string) => {
-  const resolvedPath = path.resolve(workingDirectory, filePath);
+  const resolvedPath = resolve(workingDirectory, filePath);
   await fs.access(resolvedPath, constants.R_OK);
   return resolvedPath;
 };
@@ -30,21 +30,27 @@ const defaultPaths = [
   'vitest.workspace.cjs',
 ];
 
+/**
+ * Get the path to the vite config file
+ * @param workingDirectory The working directory, repo root
+ * @param configPath The vite config path, optional, if not provided will try to find the vite config file in the default paths
+ * @returns
+ */
 export const getViteConfigPath = async (
   workingDirectory: string,
-  input: string
+  configPath: string = ''
 ) => {
   try {
-    if (input === '') {
+    if (configPath === '') {
       return await Promise.any(
         defaultPaths.map((filePath) => testFilePath(workingDirectory, filePath))
       );
     }
 
-    return await testFilePath(workingDirectory, input);
+    return await testFilePath(workingDirectory, configPath);
   } catch {
-    const searchPath = input
-      ? path.resolve(workingDirectory, input)
+    const searchPath = configPath
+      ? resolve(workingDirectory, configPath)
       : `any default location in "${workingDirectory}"`;
 
     core.warning(stripIndent`
