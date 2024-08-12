@@ -35,7 +35,6 @@ export const generateCoverageSummary = async (
     }),
     2
   );
-
   for (const packageItem of changedPackages) {
     const projectCwd = packageItem.dir;
     core.info(`generating coverage summary from: ${projectCwd}`);
@@ -51,13 +50,17 @@ export const generateCoverageSummary = async (
         jsonSummaryComparePath
       );
     }
-    summary.addHeading(
-      generateHeadline({
-        name: options.name,
-        relativeDir: packageItem.relativeDir,
-      }),
-      2
-    );
+    // for single project, we don't need to show the project name
+    // single project `relativeDir===''`
+    if (packageItem.relativeDir) {
+      summary.addHeading(
+        generateHeadline({
+          name: options.name,
+          relativeDir: packageItem.relativeDir,
+        }),
+        2
+      );
+    }
 
     const tableData = generateSummaryTableHtml(
       jsonSummary.total,

@@ -23,6 +23,14 @@ jobs:
       - name: "Remove Node Modules"
         run: rm -rf node_modules
 
+      - name: "Curren Repo"
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          include-all-projects: "true"
+          name: "Mock Reports"
+
+
       - name: "Test Normal Repo"
         uses: ./
         with:
