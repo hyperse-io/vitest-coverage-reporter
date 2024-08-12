@@ -42,6 +42,7 @@ export const main = async (args: string[]) => {
         name: 'Coverage Report',
         fileCoverageMode: FileCoverageMode.None,
         repoCwd: cwd,
+        includeAllProjects: false,
       });
       await writeSummaryToReadMe(cwd, summary, '## Coverage Report');
     }

@@ -188,6 +188,7 @@ This action requires the `pull-request: write` permission to add a comment to yo
 | `name`                      | Give the report a custom name. This is useful if you want multiple reports for different test suites within the same PR. Needs to be unique.                             | ''                                                                                                                                 |
 | `json-summary-compare-path` | The path to the json summary file to compare against. If given, will display a trend indicator and the difference in the summary. Respects the working-directory option. | undefined                                                                                                                          |
 | `pr-number`                 | The number of the PR to post a comment to (if any)                                                                                                                       | If in the context of a triggered workflow, the PR of the triggering workflow.If no PR context is found, it defaults to `undefined` |
+| `include-all-projects`      | Include all projects or auto detect file changed project in the pull request.                                                                                            | it defaults to `false`, will auto detect PR changed projects                                                                       |
 
 #### File Coverage Mode
 
@@ -203,14 +204,14 @@ If your project includes multiple test suites and you want to consolidate their 
 ## ...
 - name: 'Report Frontend Coverage'
   if: always() # Also generate the report if tests are failing
-  uses:  davelosert/vitest-coverage-report-action@v2
+  uses: hyperse-io/vitest-coverage-reporter@v1
   with:
     name: 'Frontend'
     json-summary-path: './coverage/coverage-summary-frontend.json'
     json-final-path: './coverage/coverage-final-frontend.json
 - name: 'Report Backend Coverage'
   if: always() # Also generate the report if tests are failing
-  uses:  davelosert/vitest-coverage-report-action@v2
+  uses: hyperse-io/vitest-coverage-reporter@v1
   with:
     name: 'Backend'
     json-summary-path: './coverage/coverage-summary-backend.json'
