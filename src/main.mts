@@ -30,8 +30,8 @@ export const main = async (args: string[]) => {
   const badgesSavedTo = resolve(cwd, argv.path);
   const { jsonSummaryPath } = getVitestJsonPath(cwd);
   const jsonSummary = await parseVitestJsonSummaryReport(jsonSummaryPath);
-
-  for (const type of argv.type) {
+  const types = Array.isArray(argv.type) ? argv.type : [argv.type];
+  for (const type of types) {
     if (type === 'badges') {
       await generateBadges({
         badgesSavedTo,
@@ -39,10 +39,11 @@ export const main = async (args: string[]) => {
       });
     } else if (type === 'readme') {
       const summary = await generateCoverageSummary({
-        name: 'Coverage Report',
+        name: '',
         fileCoverageMode: FileCoverageMode.None,
         repoCwd: cwd,
-        includeAllProjects: false,
+        hideHeadline: true,
+        includeAllProjects: true,
       });
       await writeSummaryToReadMe(cwd, summary, '## Coverage Report');
     }

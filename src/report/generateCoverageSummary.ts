@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { getChangedPackages } from '../inputs/getChangedPackages.js';
@@ -17,6 +18,7 @@ import { generateSummaryTableHtml } from './generateSummaryTableHtml.js';
 type GenerateCoverageSummaryOptions = {
   name: string;
   repoCwd: string;
+  hideHeadline?: boolean;
   fileCoverageMode: FileCoverageMode;
   includeAllProjects: boolean;
 };
@@ -28,19 +30,27 @@ export const generateCoverageSummary = async (
     options.repoCwd,
     options.includeAllProjects
   );
-  const summary = core.summary.addHeading(
-    generateHeadline({
-      name: options.name,
-      relativeDir: '',
-    }),
-    2
-  );
+  const summary = !options.hideHeadline
+    ? core.summary.addHeading(
+        generateHeadline({
+          name: options.name,
+          relativeDir: '',
+        }),
+        2
+      )
+    : core.summary;
+
   for (const packageItem of changedPackages) {
     const projectCwd = packageItem.dir;
     core.info(`generating coverage summary from: ${projectCwd}`);
-
     const { jsonSummaryPath, jsonSummaryComparePath, jsonFinalPath } =
       getVitestJsonPath(projectCwd);
+
+    if (!existsSync(jsonSummaryPath)) {
+      core.warning(`No summary report json file found, skip ${projectCwd}`);
+      continue;
+    }
+
     const jsonSummary = await parseVitestJsonSummaryReport(jsonSummaryPath);
     const thresholds = await getVitestThresholds(projectCwd);
 
@@ -82,10 +92,13 @@ export const generateCoverageSummary = async (
       summary.addDetails('File Coverage', fileTable);
     }
   }
-
-  summary.addRaw(
-    `<em>Generated in workflow <a href=${getWorkflowSummaryURL()}>#${github.context.runNumber}</a></em>`
-  );
+  try {
+    summary.addRaw(
+      `<em>Generated in workflow <a href=${getWorkflowSummaryURL()}>#${github.context.runNumber}</a></em>`
+    );
+  } catch {
+    // ignore, when we use cli mode, we don't have github context
+  }
   return summary;
 };
 

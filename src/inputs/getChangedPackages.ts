@@ -10,7 +10,10 @@ export async function getChangedPackages(
 ) {
   const workspacePackages = await getWorkspacePackages(repoCwd);
   const changedPackages = new Set<Package>();
-  const allChangedFiles = await getPullChanges(FileCoverageMode.All);
+  // if all project don't need to check changes
+  const allChangedFiles = includeAllProjects
+    ? []
+    : await getPullChanges(FileCoverageMode.All);
   core.debug(`allChangedFiles: ${JSON.stringify(allChangedFiles, null, 2)}`);
   for (const [dir, { name, relativeDir, version }] of workspacePackages) {
     const includeThisProject =
