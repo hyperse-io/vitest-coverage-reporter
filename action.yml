@@ -6,6 +6,10 @@ inputs:
       required: false
       description: 'A github access token with permissions to write to issues. Uses secrets.GITHUB_TOKEN by default.'
       default: ${{ github.token }}
+  write-summary-to-readme:
+      required: false
+      description: 'Write the coverage summary to the README.md file.'
+      default: '## Coverage Report'
   vite-config-path:
       required: false
       description: 'The path to the vite config file. By default, looks for paths by the pattern "vite[st].config.{t|mt|ct|j|mj|cj}s".'
@@ -24,10 +28,14 @@ inputs:
       required: false
       description: 'How to show summary for files coverage. Uses "changes" by default.'
       default: changes
-  working-directory:
+  repo-cwd:
       required: false
-      description: 'Custom working directory'
+      description: 'Custom repo directory'
       default: ./
+  include-all-projects:
+      required: false
+      description: 'Include all projects or auto detect file changed project in the pull request.'
+      default: 'false'
   name:
       required: false
       description: 'The name of the coverage report. Can be used to execute this action multiple times. '

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { icons } from '../../src/icons.js';
+import { icons } from '../../src/constants.js';
 import { generateSummaryTableHtml } from '../../src/report/generateSummaryTableHtml.js';
 import type { Thresholds } from '../../src/types/Threshold.js';
 import {

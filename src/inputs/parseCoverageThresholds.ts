@@ -1,5 +1,5 @@
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import * as core from '@actions/core';
 import type { Thresholds } from '../types/Threshold.js';
 
@@ -9,15 +9,17 @@ const regexLines = /lines:\s*(\d+)/;
 const regexBranches = /branches\s*:\s*(\d+)/;
 const regexFunctions = /functions\s*:\s*(\d+)/;
 
+/**
+ * Parse the coverage thresholds from the vite config file, supports all vite config file formats
+ * @param vitestConfigPath The path to the vite config file
+ * @returns
+ */
 export const parseCoverageThresholds = async (
   vitestConfigPath: string
 ): Promise<Thresholds> => {
   try {
-    const resolvedViteConfigPath = path.resolve(
-      process.cwd(),
-      vitestConfigPath
-    );
-    const rawContent = await fs.readFile(resolvedViteConfigPath, 'utf8');
+    const resolvedViteConfigPath = resolve(process.cwd(), vitestConfigPath);
+    const rawContent = await readFile(resolvedViteConfigPath, 'utf8');
 
     const has100Value = rawContent.match(regex100);
 

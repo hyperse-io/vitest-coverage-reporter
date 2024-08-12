@@ -1,6 +1,6 @@
 import { stripIndent } from 'common-tags';
 import { readFile } from 'node:fs/promises';
-import path from 'node:path';
+import { resolve } from 'node:path';
 import * as core from '@actions/core';
 import type { JsonFinal } from '../types/JsonFinal.js';
 import type { JsonSummary } from '../types/JsonSummary.js';
@@ -8,12 +8,12 @@ import type { JsonSummary } from '../types/JsonSummary.js';
 const parseVitestCoverageReport = async <type extends JsonSummary | JsonFinal>(
   jsonPath: string
 ): Promise<type> => {
-  const resolvedJsonSummaryPath = path.resolve(process.cwd(), jsonPath);
+  const resolvedJsonSummaryPath = resolve(process.cwd(), jsonPath);
   const jsonSummaryRaw = await readFile(resolvedJsonSummaryPath);
   return JSON.parse(jsonSummaryRaw.toString()) as type;
 };
 
-export const parseVitestJsonSummary = async (
+export const parseVitestJsonSummaryReport = async (
   jsonSummaryPath: string
 ): Promise<JsonSummary> => {
   try {
@@ -33,7 +33,7 @@ export const parseVitestJsonSummary = async (
   }
 };
 
-export const parseVitestJsonFinal = async (
+export const parseVitestJsonFinalReport = async (
   jsonFinalPath: string
 ): Promise<JsonFinal> => {
   try {

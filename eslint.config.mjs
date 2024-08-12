@@ -10,5 +10,5 @@ export default defineConfig(
       },
     },
   ],
-  ['**/coverage']
+  ['**/coverage', '**/tmp']
 );

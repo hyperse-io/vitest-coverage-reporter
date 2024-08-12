@@ -1,0 +1,8 @@
+{
+    "name": "fixture-mono-repo",
+    "version": "1.0.0",
+    "workspaces":[
+        "website",
+        "packages/*"
+    ]
+}
