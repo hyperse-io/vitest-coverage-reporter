@@ -24,13 +24,13 @@ export default defineConfig((options) => [
   },
   {
     dts: false,
-    entry: ['src/main.ts'],
+    entry: ['src/main.mts'],
     splitting: false,
     sourcemap: !options.watch,
     clean: true,
     minify: false, //!options.watch,
     treeshake: true,
     tsconfig: './tsconfig.build.json',
-    format: ['cjs'],
+    format: ['esm'],
   },
 ]);

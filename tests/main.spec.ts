@@ -3,7 +3,7 @@ import { MockInstance } from 'vitest';
 import * as pullChanges from '../src/inputs/getPullChanges.js';
 import * as parseJsonReports from '../src/inputs/parseVitestJsonFinalReport.js';
 import * as readOptions from '../src/inputs/readOptions.js';
-import { main } from '../src/main.js';
+import { main } from '../src/main.mjs';
 import * as generateBadges from '../src/report/generateBadges.js';
 import { GenerateBadgesOptions } from '../src/report/generateBadges.js';
 import { JsonSummary } from '../src/types/JsonSummary.js';

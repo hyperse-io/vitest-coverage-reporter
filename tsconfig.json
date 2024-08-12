@@ -15,5 +15,11 @@
     "jsx": "preserve"
   },
   "exclude": ["**/node_modules", "**/.*/", "dist", "build"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "vitest.config.mts"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "vitest.config.mts",
+    "src/main.mts"
+  ]
 }
