@@ -26,14 +26,14 @@ jobs:
       - name: "Test Normal Repo"
         uses: ./
         with:
-          working-directory: "./tests/mockReports"
+          repo-cwd: "./tests/mockReports"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           name: "Mock Reports"
 
       - name: "Test Mono Repo"
         uses: ./
         with:
-          working-directory: "./tests/mockMonoReports"
+          repo-cwd: "./tests/mockMonoReports"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           name: "Mock Mono Reports"
   
