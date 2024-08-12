@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.10
+
+### Patch Changes
+
+- [`e956c21`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/e956c216f34154b990a579152b647f41d90ee213) Thanks [@tianyingchun](https://github.com/tianyingchun)! - fix typecheck issue
+
 ## 1.0.9
 
 ### Patch Changes
