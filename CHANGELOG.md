@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.12
+
+### Patch Changes
+
+- [`4c0ed3f`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/4c0ed3ff6e3a00c0bcc9f834dc1f06d540df73ef) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bug fix for cli
+
 ## 1.0.11
 
 ### Patch Changes
