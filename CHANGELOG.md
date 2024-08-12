@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.11
+
+### Patch Changes
+
+- [`6d35faf`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/6d35faf206eae6035c71432c6fbfa96d3e689a53) Thanks [@tianyingchun](https://github.com/tianyingchun)! - change cli as `.mjs`
+
 ## 1.0.10
 
 ### Patch Changes
