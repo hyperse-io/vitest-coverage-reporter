@@ -1,5 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`getWorkspacePackages() > Should correct normalize single normal project 1`] = `
+{
+  "meta": {
+    "name": "fixture-website",
+    "relativeDir": "./",
+    "version": "1.0.0",
+  },
+}
+`;
+
 exports[`getWorkspacePackages() > Should correct resolve workspace packages 1`] = `
 {
   "meta": {

@@ -1,4 +1,6 @@
 import { getPackages } from '@manypkg/get-packages';
+import { isMonoRepo } from '../utils/isMonoRepo.js';
+import { readJsonFile } from '../utils/readJsonFile.js';
 
 /**
  * Get the workspace packages
@@ -10,6 +12,24 @@ export async function getWorkspacePackages(
 ): Promise<
   Map<string, { name: string; relativeDir: string; version: string }>
 > {
+  if (!isMonoRepo(cwd)) {
+    try {
+      const packageJson = readJsonFile(cwd);
+      return new Map([
+        [
+          cwd,
+          {
+            name: packageJson.name,
+            version: packageJson.version,
+            relativeDir: './',
+          },
+        ],
+      ]);
+    } catch {
+      return new Map();
+    }
+  }
+
   const { packages } = await getPackages(cwd);
   const sortedPackages: Array<
     [string, { name: string; relativeDir: string; version: string }]

@@ -20,7 +20,6 @@ describe('getChangedPackages()', () => {
     const changedPackages = await getChangedPackages(fixtureCwd);
     for (const { dir: _, ...restProps } of changedPackages) {
       expect(restProps).toBeDefined();
-
       expect(restProps).toMatchSnapshot();
     }
   });

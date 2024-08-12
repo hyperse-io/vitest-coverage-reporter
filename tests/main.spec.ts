@@ -7,8 +7,8 @@ import { main } from '../src/main.js';
 import * as generateBadges from '../src/report/generateBadges.js';
 import { GenerateBadgesOptions } from '../src/report/generateBadges.js';
 import { JsonSummary } from '../src/types/JsonSummary.js';
+import * as readJsonFile from '../src/utils/readJsonFile.js';
 import { createMockJsonSummary } from './testUtils/JsonSummaryMockFactory.js';
-
 const jsonSummary: JsonSummary = createMockJsonSummary({});
 
 describe('test cli main command `generate-badges`', () => {
@@ -33,6 +33,13 @@ describe('test cli main command `generate-badges`', () => {
     ).mockResolvedValue(jsonSummary);
 
     vi.spyOn(pullChanges, 'getPullChanges').mockResolvedValue([]);
+
+    vi.spyOn(readJsonFile, 'readJsonFile').mockReturnValue({
+      name: '',
+      version: '',
+      packages: [],
+      workspaces: [],
+    });
   });
 
   afterAll(() => {

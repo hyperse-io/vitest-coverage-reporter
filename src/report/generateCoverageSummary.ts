@@ -34,7 +34,7 @@ export const generateCoverageSummary = async (
 
   for (const packageItem of changedPackages) {
     const projectCwd = packageItem.dir;
-    core.info(`generate coverage summary from: ${projectCwd}`);
+    core.info(`generating coverage summary from: ${projectCwd}`);
 
     const { jsonSummaryPath, jsonSummaryComparePath, jsonFinalPath } =
       getVitestJsonPath(projectCwd);

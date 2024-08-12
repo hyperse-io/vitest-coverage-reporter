@@ -1,30 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`getChangedPackages() > Should correct resolve file changed packages 1`] = `
-[
-  {
-    "dir": "/Users/tianyingchun/Documents/hyperse-io/vitest-coverage-reporter/tests/inputs/fixtures/packages/package1",
-    "packageJson": {
-      "name": "fixture-package1",
-      "version": "1.0.0",
-    },
-    "relativeDir": "packages/package1",
+{
+  "packageJson": {
+    "name": "fixture-package1",
+    "version": "1.0.0",
   },
-  {
-    "dir": "/Users/tianyingchun/Documents/hyperse-io/vitest-coverage-reporter/tests/inputs/fixtures/packages/package2",
-    "packageJson": {
-      "name": "fixture-package2",
-      "version": "1.0.0",
-    },
-    "relativeDir": "packages/package2",
+  "relativeDir": "packages/package1",
+}
+`;
+
+exports[`getChangedPackages() > Should correct resolve file changed packages 2`] = `
+{
+  "packageJson": {
+    "name": "fixture-package2",
+    "version": "1.0.0",
   },
-  {
-    "dir": "/Users/tianyingchun/Documents/hyperse-io/vitest-coverage-reporter/tests/inputs/fixtures/website",
-    "packageJson": {
-      "name": "fixture-website",
-      "version": "1.0.0",
-    },
-    "relativeDir": "website",
+  "relativeDir": "packages/package2",
+}
+`;
+
+exports[`getChangedPackages() > Should correct resolve file changed packages 3`] = `
+{
+  "packageJson": {
+    "name": "fixture-website",
+    "version": "1.0.0",
   },
-]
+  "relativeDir": "website",
+}
 `;

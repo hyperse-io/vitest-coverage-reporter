@@ -12,4 +12,14 @@ describe('getWorkspacePackages()', () => {
       }).toMatchSnapshot();
     }
   });
+
+  it('Should correct normalize single normal project', async () => {
+    const packages = await getWorkspacePackages(join(fixtureCwd, 'website'));
+    for (const [dir, meta] of packages) {
+      expect(dir).toBeDefined();
+      expect({
+        meta,
+      }).toMatchSnapshot();
+    }
+  });
 });
