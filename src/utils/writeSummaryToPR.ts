@@ -24,12 +24,13 @@ export const writeSummaryToPR = async ({
   }
 
   const octokit = getOctokit();
-  const commentBody = `${summary.stringify()}\n\n${COMMENT_MARKER(markerPostfix)}`;
   const existingComment = await findCommentByBody(
     octokit,
     COMMENT_MARKER(markerPostfix),
     pullRequestNumber
   );
+
+  const commentBody = `${summary.stringify()}\n\n${COMMENT_MARKER(markerPostfix)}`;
 
   if (existingComment) {
     await octokit.rest.issues.updateComment({

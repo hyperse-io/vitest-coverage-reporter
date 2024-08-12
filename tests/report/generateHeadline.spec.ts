@@ -5,7 +5,7 @@ describe('generateHeadline()', () => {
   it('returns only static headline if no name and no working-directory is provided.', () => {
     const headline = generateHeadline({
       name: '',
-      workingDirectory: './',
+      relativeDir: '',
     });
 
     expect(headline).toEqual('Coverage Report');
@@ -14,7 +14,7 @@ describe('generateHeadline()', () => {
   it('adds name to headline if only name is provided.', () => {
     const headline = generateHeadline({
       name: 'My Project',
-      workingDirectory: './',
+      relativeDir: '',
     });
 
     expect(headline).toEqual('Coverage Report for My Project');
@@ -22,21 +22,21 @@ describe('generateHeadline()', () => {
 
   it('adds working-directory to headline if only working-directory is provided.', () => {
     const headline = generateHeadline({
-      workingDirectory: '/path/to/project',
       name: '',
+      relativeDir: 'path/to/project',
     });
 
-    expect(headline).toEqual('Coverage Report for /path/to/project');
+    expect(headline).toEqual('Coverage Report for path/to/project');
   });
 
   it('adds name and working-directory in parentheses to headline if both are provided.', () => {
     const headline = generateHeadline({
       name: 'My Project',
-      workingDirectory: '/path/to/project',
+      relativeDir: 'path/to/project',
     });
 
     expect(headline).toEqual(
-      'Coverage Report for My Project (/path/to/project)'
+      'Coverage Report for My Project (path/to/project)'
     );
   });
 });

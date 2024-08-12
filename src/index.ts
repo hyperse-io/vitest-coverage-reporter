@@ -6,40 +6,28 @@ import { writeSummaryToPR } from './utils/writeSummaryToPR.js';
 
 function getMarkerPostfix({
   name,
-  workingDirectory,
+  repoCwd,
 }: {
   name: string;
-  workingDirectory: string;
+  repoCwd: string;
 }) {
   if (name) return name;
-  if (workingDirectory !== './') return workingDirectory;
+  if (repoCwd !== './') return repoCwd;
   return 'root';
 }
 
 const run = async () => {
-  const {
-    fileCoverageMode,
-    jsonFinalPath,
-    jsonSummaryPath,
-    jsonSummaryComparePath,
-    name,
-    thresholds,
-    workingDirectory,
-    processedPrNumber,
-  } = await readOptions();
+  const { name, processedPrNumber, repoCwd, fileCoverageMode } =
+    await readOptions();
 
   const summary = await generateCoverageSummary({
     name,
-    workingDirectory,
-    jsonSummaryPath,
-    jsonSummaryComparePath,
-    thresholds,
+    repoCwd,
     fileCoverageMode,
-    jsonFinalPath,
   });
 
   try {
-    const markerPostfix = getMarkerPostfix({ name, workingDirectory });
+    const markerPostfix = getMarkerPostfix({ name, repoCwd });
     await writeSummaryToPR({
       summary,
       markerPostfix,

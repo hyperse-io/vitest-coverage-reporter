@@ -28,9 +28,9 @@ inputs:
       required: false
       description: 'How to show summary for files coverage. Uses "changes" by default.'
       default: changes
-  working-directory:
+  repo-cwd:
       required: false
-      description: 'Custom working directory'
+      description: 'Custom repo directory'
       default: ./
   name:
       required: false

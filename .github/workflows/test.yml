@@ -23,9 +23,17 @@ jobs:
       - name: "Remove Node Modules"
         run: rm -rf node_modules
 
-      - name: "Test Working Directory Option"
+      - name: "Test Normal Repo"
         uses: ./
         with:
           working-directory: "./tests/mockReports"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           name: "Mock Reports"
+
+      - name: "Test Mono Repo"
+        uses: ./
+        with:
+          working-directory: "./tests/mockMonoReports"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: "Mock Mono Reports"
+  

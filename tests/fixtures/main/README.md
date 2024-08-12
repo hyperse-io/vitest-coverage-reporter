@@ -19,8 +19,8 @@
 
 ## Coverage Report
 
-<h2>Coverage Report for Coverage Report (/Users/tianyingchun/Documents/hyperse-io/vitest-coverage-reporter/tests/fixtures/main)</h2>
-<table> <thead> <tr> <th align="center">Status</th> <th align="left">Category</th> <th align="right">Percentage</th> <th align="right">Covered / Total</th> </tr> </thead> <tbody> <tr> <td align="center">🔵</td> <td align="left">Lines</td> <td align="right">40%</td> <td align="right">40 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Statements</td> <td align="right">10%</td> <td align="right">10 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Functions</td> <td align="right">30%</td> <td align="right">30 / 100</td> </tr> <tr> <td align="center">🔵</td> <td align="left">Branches</td> <td align="right">20%</td> <td align="right">20 / 100</td> </tr> </tbody> </table><em>Generated in workflow <a href=https://github.com/owner/repo/actions/runs/NaN>#NaN</a></em>
+<h2>Coverage Report for Coverage Report</h2>
+<em>Generated in workflow <a href=https://github.com/owner/repo/actions/runs/NaN>#NaN</a></em>
 
 This GitHub Action reports vitest coverage results as a GitHub step-summary and as a comment on a pull request
 

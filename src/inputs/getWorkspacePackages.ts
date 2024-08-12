@@ -7,16 +7,20 @@ import { getPackages } from '@manypkg/get-packages';
  */
 export async function getWorkspacePackages(
   cwd: string
-): Promise<Map<string, { name: string; version: string }>> {
+): Promise<
+  Map<string, { name: string; relativeDir: string; version: string }>
+> {
   const { packages } = await getPackages(cwd);
-  const sortedPackages: Array<[string, { name: string; version: string }]> =
-    packages.map((x) => [
-      x.dir,
-      {
-        name: x.packageJson.name,
-        version: x.packageJson.version,
-      },
-    ]);
+  const sortedPackages: Array<
+    [string, { name: string; relativeDir: string; version: string }]
+  > = packages.map((x) => [
+    x.dir,
+    {
+      name: x.packageJson.name,
+      version: x.packageJson.version,
+      relativeDir: x.relativeDir,
+    },
+  ]);
   // sort by package name
   sortedPackages.sort((a, b) => {
     if (a[1].name < b[1].name) {

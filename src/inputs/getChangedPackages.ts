@@ -1,16 +1,27 @@
-import { getPackages, Package } from '@manypkg/get-packages';
+import { Package } from '@manypkg/get-packages';
+import { FileCoverageMode } from './getCoverageModeFrom';
+import { getPullChanges } from './getPullChanges';
+import { getWorkspacePackages } from './getWorkspacePackages';
 
-export async function getChangedPackages(
-  cwd: string,
-  workspacePackages: Map<string, { name: string; version: string }>
-) {
+export async function getChangedPackages(repoCwd: string) {
+  const workspacePackages = await getWorkspacePackages(repoCwd);
   const changedPackages = new Set<Package>();
-  const { packages } = await getPackages(cwd);
+  const allChangedFiles = await getPullChanges(FileCoverageMode.All);
 
-  for (const pkg of packages) {
-    const previousPackages = workspacePackages.get(pkg.dir);
-    if (previousPackages?.version !== pkg.packageJson.version) {
-      changedPackages.add(pkg);
+  for (const [dir, { name, relativeDir, version }] of workspacePackages) {
+    const packageChanged = allChangedFiles.find(
+      (s) => !!~s.indexOf(relativeDir)
+    );
+
+    if (packageChanged) {
+      changedPackages.add({
+        dir,
+        relativeDir,
+        packageJson: {
+          name,
+          version,
+        },
+      });
     }
   }
 
