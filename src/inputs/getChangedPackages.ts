@@ -1,3 +1,4 @@
+import * as core from '@actions/core';
 import { Package } from '@manypkg/get-packages';
 import { FileCoverageMode } from './getCoverageModeFrom';
 import { getPullChanges } from './getPullChanges';
@@ -12,7 +13,7 @@ export async function getChangedPackages(repoCwd: string) {
     const packageChanged = allChangedFiles.find(
       (s) => !!~s.indexOf(relativeDir)
     );
-
+    core.info(`package(${name}) is: ${packageChanged}`);
     if (packageChanged) {
       changedPackages.add({
         dir,
