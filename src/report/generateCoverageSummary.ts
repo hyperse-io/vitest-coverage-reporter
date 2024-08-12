@@ -24,7 +24,6 @@ export const generateCoverageSummary = async (
   options: GenerateCoverageSummaryOptions
 ): Promise<typeof core.summary> => {
   const changedPackages = await getChangedPackages(options.repoCwd);
-
   const summary = core.summary.addHeading(
     generateHeadline({
       name: options.name,
@@ -35,6 +34,8 @@ export const generateCoverageSummary = async (
 
   for (const packageItem of changedPackages) {
     const projectCwd = packageItem.dir;
+    core.info(`generate coverage summary from: ${projectCwd}`);
+
     const { jsonSummaryPath, jsonSummaryComparePath, jsonFinalPath } =
       getVitestJsonPath(projectCwd);
     const jsonSummary = await parseVitestJsonSummaryReport(jsonSummaryPath);

@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { MockInstance } from 'vitest';
+import * as pullChanges from '../src/inputs/getPullChanges.js';
 import * as parseJsonReports from '../src/inputs/parseVitestJsonFinalReport.js';
 import * as readOptions from '../src/inputs/readOptions.js';
 import { main } from '../src/main.js';
@@ -30,6 +31,8 @@ describe('test cli main command `generate-badges`', () => {
       parseJsonReports,
       'parseVitestJsonSummaryReport'
     ).mockResolvedValue(jsonSummary);
+
+    vi.spyOn(pullChanges, 'getPullChanges').mockResolvedValue([]);
   });
 
   afterAll(() => {

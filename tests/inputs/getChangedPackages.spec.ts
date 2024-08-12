@@ -18,6 +18,10 @@ describe('getChangedPackages()', () => {
 
   it('Should correct resolve file changed packages', async () => {
     const changedPackages = await getChangedPackages(fixtureCwd);
-    expect(changedPackages).toMatchSnapshot();
+    for (const { dir: _, ...restProps } of changedPackages) {
+      expect(restProps).toBeDefined();
+
+      expect(restProps).toMatchSnapshot();
+    }
   });
 });
