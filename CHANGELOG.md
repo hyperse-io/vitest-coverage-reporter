@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- [`0ab1dea`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/0ab1deaf387fcac7e8381c8e45c7ac78435971b7) Thanks [@tianyingchun](https://github.com/tianyingchun)! - release new version
+
+## 1.0.14
+
+### Patch Changes
+
 - [`6ba0ed1`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/6ba0ed1e8991e813a07e2ef631dc5d2f22f3a3a8) Thanks [@tianyingchun](https://github.com/tianyingchun)! - improved build scripts
 
 ## 1.0.13
