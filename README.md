@@ -125,50 +125,35 @@ jobs:
 ## Case Example 2 (github action)
 
 ```yml
-name: coverage markdown
-
+name: PR vitest coverage reporter
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  pull_request:
 
 jobs:
-  test-coverage:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-        node:
-          - 18.14.2
-        pnpm:
-          - 7
-    runs-on: ${{ matrix.os }}
-
+  build-and-test:
     permissions:
-      # Required to checkout the code
-      contents: read
-      # Required to put a comment into the pull-request
       pull-requests: write
-
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-      - name: setup node
+      - uses: actions/checkout@v4
+      - name: 'Install Node'
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
-
+          node-version: '20.x'
       - name: 📥 Install Dependencies
         run: yarn --frozen-lockfile
 
-      - name: 'Run test coverage'
+      - name: 'Build'
+        run: yarn build
+
+      - name: run coverage
         run: yarn test:coverage
 
-      - name: 'Report Coverage'
-        # Set if: always() to also generate the report if tests are failing
-        # Only works if you set `reportOnFailure: true` in your vite config as specified above
+      - name: 'PR UT Reports'
         uses: hyperse-io/vitest-coverage-reporter@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: 'PR UT Reports'
 ```
 
 ### Required Permissions
