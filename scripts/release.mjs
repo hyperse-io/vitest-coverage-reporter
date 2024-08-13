@@ -38,4 +38,7 @@ process.chdir(getDirname(import.meta.url, '..'));
     'origin',
     `HEAD:refs/heads/${releaseLine}`,
   ]);
+
+  // publish to npm registry
+  await exec('changeset', ['publish']);
 })();
