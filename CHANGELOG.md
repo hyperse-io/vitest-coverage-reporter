@@ -1,5 +1,11 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.15
+
+### Patch Changes
+
+- [`62b89ce`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/62b89cece75bc0fdbc618e11830faabd6b9af978) Thanks [@tianyingchun](https://github.com/tianyingchun)! - Add `npm` publish
+
 ## 1.0.14
 
 ### Patch Changes
