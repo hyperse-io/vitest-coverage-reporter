@@ -1,6 +1,6 @@
 {
   "name": "@hyperse/vitest-coverage-reporter",
-  "version": "1.0.14",
+  "version": "1.0.13",
   "description": "Using gitHub action for creating markdown coverage report, badges from Istanbul json report",
   "keywords": [
     "hyperse",
@@ -32,7 +32,7 @@
     "lint": "eslint .",
     "lint-staged-files": "lint-staged --allow-empty",
     "prepare": "husky",
-    "release": "node ./scripts/release.mjs",
+    "release": "yarn build && node ./scripts/release.mjs",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:export": "tsx tests/testUtils/exportTestTable.ts",
