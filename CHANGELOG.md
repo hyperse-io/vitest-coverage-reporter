@@ -1,5 +1,13 @@
 # @hyperse/vitest-coverage-reporter
 
+## 1.0.16
+
+### Patch Changes
+
+- [`bb5d126`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/bb5d1264deefb6381be197fa0d9229b63a7949af) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bump version
+
+- [`f194d63`](https://github.com/hyperse-io/vitest-coverage-reporter/commit/f194d63f908d9d4ba4efdf6eb2760376c96a4586) Thanks [@tianyingchun](https://github.com/tianyingchun)! - bump version
+
 ## 1.0.15
 
 ### Patch Changes
