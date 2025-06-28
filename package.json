@@ -31,7 +31,7 @@
     "cz": "cz",
     "lint": "eslint .",
     "lint-staged-files": "lint-staged --allow-empty",
-    "postinstall": "husky",
+    "prepare": "husky",
     "release": "yarn build && node ./scripts/release.mjs",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
