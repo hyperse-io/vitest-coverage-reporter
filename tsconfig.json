@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@hyperse/eslint-config-hyperse/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
@@ -7,9 +8,10 @@
     "incremental": false,
     "types": ["vitest/globals"],
     "paths": {},
+    "verbatimModuleSyntax": false,
     "target": "ES2019",
-    "module": "commonjs",
-    "moduleResolution": "Node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "lib": ["dom", "dom.iterable", "esnext"],
     "isolatedModules": true,
     "jsx": "preserve"

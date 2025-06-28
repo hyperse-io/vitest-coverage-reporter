@@ -1,7 +1,7 @@
 import { createWriteStream, existsSync, mkdirSync } from 'node:fs';
 import https from 'node:https';
 import { resolve } from 'node:path';
-import { CoverageReport } from '../types/JsonSummary.js';
+import type { CoverageReport } from '../types/JsonSummary.js';
 
 /**
  * Generate a shields.io URL for a badge.

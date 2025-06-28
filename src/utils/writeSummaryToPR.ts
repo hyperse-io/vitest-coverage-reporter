@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { getOctokit, Octokit } from './getOctokit.js';
+import type { Octokit } from './getOctokit.js';
+import { getOctokit } from './getOctokit.js';
 import { getPullRequestNumber } from './getPullRequestNumber.js';
 
 const COMMENT_MARKER = (markerPostfix = 'root') =>

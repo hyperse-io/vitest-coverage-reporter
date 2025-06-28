@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { getOctokit, Octokit } from './getOctokit.js';
+import type { Octokit } from './getOctokit.js';
+import { getOctokit } from './getOctokit.js';
 
 async function findPullRequest(octokit: Octokit, headSha: string) {
   core.startGroup('Querying REST API for Pull-Requests.');

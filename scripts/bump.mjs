@@ -12,7 +12,7 @@ process.chdir(getDirname(import.meta.url, '..'));
   const readmePath = getDirname(import.meta.url, '..', 'README.md');
   const content = readFileSync(readmePath, 'utf8');
   const updatedContent = content.replace(
-    /hyperse-io\/vitest-coverage-reporter@[^\s]+/g,
+    /hyperse-io\/vitest-coverage-reporter@\S+/g,
     `hyperse-io/vitest-coverage-reporter@${releaseLine}`
   );
   writeFileSync(readmePath, updatedContent);

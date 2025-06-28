@@ -3,7 +3,7 @@ import { getChangedPackages } from '../../src/inputs/getChangedPackages.js';
 import * as pullChanges from '../../src/inputs/getPullChanges.js';
 
 describe('getChangedPackages()', () => {
-  const fixtureCwd = join(__dirname, 'fixtures');
+  const fixtureCwd = join(__dirname, 'fixtures', 'mono');
   beforeEach(() => {
     vi.spyOn(pullChanges, 'getPullChanges').mockResolvedValue([
       'packages/package1/src/index.ts',

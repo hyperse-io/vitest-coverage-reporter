@@ -1,4 +1,4 @@
-import { Thresholds } from '../types/Threshold.js';
+import type { Thresholds } from '../types/Threshold.js';
 import { getViteConfigPath } from './getViteConfigPath.js';
 import { parseCoverageThresholds } from './parseCoverageThresholds.js';
 

@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { generateBadges } from '../../src/report/generateBadges.js';
-import { JsonSummary } from '../../src/types/JsonSummary.js';
+import type { JsonSummary } from '../../src/types/JsonSummary.js';
 import { createMockJsonSummary } from '../testUtils/JsonSummaryMockFactory.js';
 
 describe('generateBadges()', () => {

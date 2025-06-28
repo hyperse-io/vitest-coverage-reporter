@@ -19,8 +19,14 @@
 
 ## Coverage Report
 
-<h2>Coverage Report for Coverage Report</h2>
-<em>Generated in workflow <a href=https://github.com/owner/repo/actions/runs/NaN>#NaN</a></em>
+<em>Generated in workflow \<a href=https://github.com/owner/repo/actions/runs/NaN>#NaN</a></em>
+
+<!-- hyperse-vitest-coverage-reporter-marker-readme -->
+
+## Coverage Report
+
+<em>Generated in workflow \<a href=https://github.com/owner/repo/actions/runs/NaN>#NaN</a></em>
+
 
 This GitHub Action reports vitest coverage results as a GitHub step-summary and as a comment on a pull request
 

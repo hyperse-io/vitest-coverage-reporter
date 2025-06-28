@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { Package } from '@manypkg/get-packages';
+import type { Package } from '@manypkg/get-packages';
 import { FileCoverageMode } from './getCoverageModeFrom';
 import { getPullChanges } from './getPullChanges';
 import { getWorkspacePackages } from './getWorkspacePackages';

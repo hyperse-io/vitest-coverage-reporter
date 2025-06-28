@@ -1,12 +1,12 @@
 import { join } from 'path';
-import { MockInstance } from 'vitest';
+import type { MockInstance } from 'vitest';
 import * as pullChanges from '../src/inputs/getPullChanges.js';
 import * as parseJsonReports from '../src/inputs/parseVitestJsonFinalReport.js';
 import * as readOptions from '../src/inputs/readOptions.js';
 import { main } from '../src/main.mjs';
+import type { GenerateBadgesOptions } from '../src/report/generateBadges.js';
 import * as generateBadges from '../src/report/generateBadges.js';
-import { GenerateBadgesOptions } from '../src/report/generateBadges.js';
-import { JsonSummary } from '../src/types/JsonSummary.js';
+import type { JsonSummary } from '../src/types/JsonSummary.js';
 import * as readJsonFile from '../src/utils/readJsonFile.js';
 import { createMockJsonSummary } from './testUtils/JsonSummaryMockFactory.js';
 const jsonSummary: JsonSummary = createMockJsonSummary({});

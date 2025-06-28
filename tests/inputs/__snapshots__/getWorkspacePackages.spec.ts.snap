@@ -3,8 +3,28 @@
 exports[`getWorkspacePackages() > Should correct normalize single normal project 1`] = `
 {
   "meta": {
+    "name": "fixture-package1",
+    "relativeDir": "packages/package1",
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`getWorkspacePackages() > Should correct normalize single normal project 2`] = `
+{
+  "meta": {
+    "name": "fixture-package2",
+    "relativeDir": "packages/package2",
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`getWorkspacePackages() > Should correct normalize single normal project 3`] = `
+{
+  "meta": {
     "name": "fixture-website",
-    "relativeDir": "",
+    "relativeDir": "website",
     "version": "1.0.0",
   },
 }
@@ -35,6 +55,16 @@ exports[`getWorkspacePackages() > Should correct resolve workspace packages 3`] 
   "meta": {
     "name": "fixture-website",
     "relativeDir": "website",
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`getWorkspacePackages() > Should correct resolve workspace packages for single repo 1`] = `
+{
+  "meta": {
+    "name": "fixture-single-repo",
+    "relativeDir": ".",
     "version": "1.0.0",
   },
 }
